@@ -1,0 +1,4 @@
+- community.routeros.command:
+    commands:
+      - /ip
+      - print
