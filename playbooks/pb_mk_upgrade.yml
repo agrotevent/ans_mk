@@ -18,6 +18,6 @@
 #           - /system package update install
 #      when: output.stdout is search('available')
 
-  tasks:
-   - name: Performing backup of Mikrotik to local storage
-     raw: /system backup save name {{inventory_hostname}}
+#  tasks:
+#   - name: Performing backup of Mikrotik to local storage
+#     raw: /system backup save name {{inventory_hostname}}
