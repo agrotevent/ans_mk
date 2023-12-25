@@ -1,7 +1,7 @@
 ---
 - hosts: all
 # tasks file for mtk-ros-upgrade
-    - name: Check version
+#    - name: Check version
       routeros_command:
         commands:
            - /system package update check-for-updates
