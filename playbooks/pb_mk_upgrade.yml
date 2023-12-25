@@ -1,6 +1,6 @@
 ---
 - hosts: all
-# tasks file for mtk-ros-upgrade
+tasks:
     - name: Check version
       raw: /system package update check-for-updates
       
