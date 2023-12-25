@@ -1,0 +1,3 @@
+- name: reboot device
+  routeros_command:
+    commands: ":execute {/system reboot};"
