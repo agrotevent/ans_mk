@@ -1,5 +1,6 @@
 ---
 - name: RouterOS Status
+  hosts: all
   gather_facts: false
   tasks:
   
