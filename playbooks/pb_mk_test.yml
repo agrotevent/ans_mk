@@ -1,4 +1,5 @@
-- community.routeros.command:
-    commands:
-      - /ip
-      - print
+- name: Display resource statistics (routeros)
+  community.network.routeros_command:
+    commands: /system resource print
+  register: routeros_resources
+  when: ansible_network_os == 'community.network.routeros'
