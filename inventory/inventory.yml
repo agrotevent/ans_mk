@@ -1,0 +1,2 @@
+[mikrotik]
+MK-KNOT ansible_host=10.13.36.20
