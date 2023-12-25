@@ -1,0 +1,16 @@
+---
+
+- name: collect MikroTik facts
+  gather_facts: no
+
+  tasks:
+
+  - name: gather facts from routers
+    mikrotik_facts:
+      hostname: "{{ inventory_hostname }}"
+      username: admin
+      verbose: yes
+    register: mikrotik
+
+  - debug:
+      var: mikrotik
