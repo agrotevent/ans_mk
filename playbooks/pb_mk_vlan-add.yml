@@ -11,7 +11,7 @@
 
 #Variablen für die VLANs
     vlanid: 2014
-    vlanname: testvlan20
+    vlanname: testvlan25
     bridgeid: bridge1
     taggedinterface: ether2
     untaggedinterface: ether1,bridge1
