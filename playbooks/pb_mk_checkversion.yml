@@ -1,8 +1,13 @@
 ---
 - name: "Check OS Version"
   hosts: all
-  gather_facts: no
-
+  vars:
+  - ansible_connection: ansible.netcommon.network_cli
+  - ansible_network_os: community.network.routeros
+  - ANSIBLE_REMOTE_TMP: /tmp
+  gather_facts: false
+  environment:
+    remote_tmp:  /tmp/.ansible/tmp
 
   tasks:
   - name: Check OS Version on Device
