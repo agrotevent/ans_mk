@@ -1,5 +1,5 @@
 ---
-- name: "List VLAN Bridge/Interface"
+- name: "Add VLAN Bridge/Interface"
   hosts: all
   vars:
   - ansible_connection: ansible.netcommon.network_cli
@@ -8,20 +8,21 @@
     vlanid: 2009
     vlanname: testvlan
     bridgeid: bridge1
-    taggedinterface:
-    untaggedinterface: ether1,ether2,bridge1
+    taggedinterface: ether1
+    untaggedinterface: ether2,bridge1
   gather_facts: false
   environment:
     remote_tmp:  /tmp/.ansible/tmp
 
   tasks:
-  - name: VLAN Add Bridge
-    community.routeros.command:
-      commands: /interface/bridge/vlan/add vlan-id=[vlanid] bridge=[bridgeid] untagged=[untaggedinterface] tagged=[taggedinterface]
 
   - name: VLAN Add Interface
     community.routeros.command:
-      commands: /interface/vlan/add vlan-id=[vlanid interface=[bridgeid] name=[vlanname]
+      commands: /interface/vlan/add vlan-id=[vlanid] interface=[bridgeid] name=[vlanname]
+
+  - name: VLAN Add Bridge
+    community.routeros.command:
+      commands: /interface/bridge/vlan/add vlan-id=[vlanid] bridge=[bridgeid] untagged=[untaggedinterface] tagged=[taggedinterface]
 
 
 ...
