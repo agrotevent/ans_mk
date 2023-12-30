@@ -9,7 +9,7 @@
     vlanname: testvlan3
     bridgeid: bridge1
     taggedinterface: ether2
-    untaggedinterface: ether1, bridge1
+    untaggedinterface: ether1,bridge1
     commentvar: Ansible
   gather_facts: false
   environment:
