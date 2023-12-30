@@ -3,7 +3,6 @@
   #Zusätzlich Kommentare möglich
 
 - name: "Add VLAN Bridge/Interface"
-  hosts: MikrotikKNOT
   vars:
   - ansible_connection: ansible.netcommon.network_cli
   - ansible_network_os: community.network.routeros
