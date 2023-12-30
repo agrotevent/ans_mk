@@ -1,6 +1,6 @@
 ---
 - name: "Check OS Version"
-  hosts: Knot:Switche-Core
+  hosts: all
   gather_facts: no
 
 
