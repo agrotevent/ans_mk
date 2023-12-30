@@ -6,7 +6,7 @@
   - ansible_network_os: community.network.routeros
   gather_facts: false
   environment:
-    remote_tmp: /
+    remote_tmp: /tmp
 
   tasks:
 
