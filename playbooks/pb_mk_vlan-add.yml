@@ -6,6 +6,10 @@
   - ansible_network_os: community.network.routeros
   - ANSIBLE_REMOTE_TMP: /tmp
     vlanid: 2009
+    vlanname: testvlan
+    bridgeid: bridge1
+    taggedinterface:
+    untaggedinterface: ether1,ether2,bridge1
   gather_facts: false
   environment:
     remote_tmp:  /tmp/.ansible/tmp
@@ -13,10 +17,11 @@
   tasks:
   - name: VLAN Add Bridge
     community.routeros.command:
-      commands: /interface/bridge/vlan/add vlan-id=vlanid untagged=ether1,ether2,bridge1
+      commands: /interface/bridge/vlan/add vlan-id=[vlanid] bridge=[bridgeid] untagged=[untaggedinterface] tagged=[taggedinterface]
 
   - name: VLAN Add Interface
     community.routeros.command:
-      commands: /interface/vlan/add vlan-id=vlanid interface=bridge1
+      commands: /interface/vlan/add vlan-id=[vlanid interface=[bridgeid] name=[vlanname]
+
 
 ...
