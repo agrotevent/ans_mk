@@ -1,7 +1,7 @@
 ---
     - name: Check version
       raw: /system package update check-for-updates
-      
+
 #    - name: Check if an update is needed
 #      routeros_command:
 #        commands:
@@ -19,3 +19,4 @@
 #  tasks:
 #   - name: Performing backup of Mikrotik to local storage
 #     raw: /system backup save name {{inventory_hostname}}
+...

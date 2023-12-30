@@ -20,3 +20,4 @@
   - name: Show a fact
     debug:
       msg: "First IP address: {{ ansible_net_all_ipv4_addresses[0] }}"
+...

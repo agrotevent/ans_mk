@@ -1,0 +1,16 @@
+---
+- name: "Check OS Version"
+  hosts: Knot:Switche-Core
+  gather_facts: no
+
+
+  tasks:
+  - name: Check OS Version on Device
+    routeros.command:
+      commands: /system package print
+    register: version_output
+
+  - name: Display Facts Variable
+    debug:
+      var: version_output
+...
