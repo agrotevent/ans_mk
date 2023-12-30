@@ -1,0 +1,21 @@
+---
+- name: "List VLAN Bridge/Interface"
+  hosts: all
+  vars:
+  - ansible_connection: ansible.netcommon.network_cli
+  - ansible_network_os: community.network.routeros
+  - ANSIBLE_REMOTE_TMP: /tmp
+  gather_facts: false
+  environment:
+    remote_tmp:  /tmp/.ansible/tmp
+
+  tasks:
+  - name: List VLAN Bridge
+    community.routeros.command:
+      commands: /bridge vlan print
+    register: vlan_bridge_output
+
+  - name: Display VLAN Bridge
+    debug:
+      var: vlan_bridge_output
+...
