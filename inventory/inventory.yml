@@ -1,6 +1,11 @@
+
+
 [Knot]
 MK-KNOT ansible_host=10.13.36.20
 
+[Knot:vars]
+ansible_connection= ansible.netcommon.network_cli
+ansible_network_os= community.network.routeros
 
 #[Switche-Core]
 #Core-A1 ansible_host=10.13.37.2
