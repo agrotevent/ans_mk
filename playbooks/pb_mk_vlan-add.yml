@@ -3,19 +3,19 @@
   #Zusätzlich Kommentare möglich
 
 - name: "Add VLAN Bridge/Interface"
-  hosts: all
+  hosts: MikrotikKNOT
   vars:
   - ansible_connection: ansible.netcommon.network_cli
   - ansible_network_os: community.network.routeros
   - ANSIBLE_REMOTE_TMP: /tmp
 
 #Variablen für die VLANs
-    vlanid: 2014
-    vlanname: testvlan25
+    vlanid: 2030
+    vlanname: testvlan30
     bridgeid: bridge1
     taggedinterface: ether2
     untaggedinterface: ether1,bridge1
-    commentvar: Ansible21
+    commentvar: Ansible30
 
 
   gather_facts: false
