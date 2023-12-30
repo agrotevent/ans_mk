@@ -1,16 +1,23 @@
 ---
+  #VLAN für Bridge/Interface anlegen und interfaces "tagged"/"untagged" hinzufügen.
+  #Zusätzlich Kommentare möglich
+
 - name: "Add VLAN Bridge/Interface"
   hosts: all
   vars:
   - ansible_connection: ansible.netcommon.network_cli
   - ansible_network_os: community.network.routeros
   - ANSIBLE_REMOTE_TMP: /tmp
-    vlanid: 2016
-    vlanname: testvlan8
+
+#Variablen für die VLANs
+    vlanid: 2020
+    vlanname: testvlan20
     bridgeid: bridge1
     taggedinterface: ether2
     untaggedinterface: ether1,bridge1
-    commentvar: Ansible
+    commentvar: Ansible20
+
+
   gather_facts: false
   environment:
     remote_tmp:  /tmp/.ansible/tmp
@@ -21,17 +28,10 @@
     community.routeros.command:
       commands: /interface/vlan/add vlan-id={{ vlanid }} interface={{ bridgeid }} name={{ vlanname }}  comment={{commentvar}}
 
-#  - name: VLAN Add Interface 2009
-#    community.routeros.command:
-#      commands: /interface/vlan/add vlan-id=2009 interface=bridge1 name=testvlan
-
   - name: VLAN Add Bridge {{ vlanid }}
     community.routeros.command:
       commands:
         - "/interface/bridge/vlan/add vlan-id={{ vlanid }} bridge={{ bridgeid }} tagged={{ taggedinterface }} untagged={{ untaggedinterface }} comment={{commentvar}}"
 
-#  - name: VLAN Add Bridge 2009
-#    community.routeros.command:
-#      commands: /interface/bridge/vlan/add vlan-id=2009 bridge=bridge1 untagged=ether1 tagged=ether2
 
 ...
