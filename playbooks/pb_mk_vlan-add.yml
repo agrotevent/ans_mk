@@ -20,16 +20,16 @@
     community.routeros.command:
       commands: /interface/vlan/add vlan-id={{ vlanid }} interface={{ bridgeid }} name={{ vlanname }}
 
-  - name: VLAN Add Interface 2009
-    community.routeros.command:
-      commands: /interface/vlan/add vlan-id=2009 interface=bridge1 name=testvlan
+#  - name: VLAN Add Interface 2009
+#    community.routeros.command:
+#      commands: /interface/vlan/add vlan-id=2009 interface=bridge1 name=testvlan
 
   - name: VLAN Add Bridge {{ vlanid }}
     community.routeros.command:
       commands: /interface/bridge/vlan/add vlan-id={{ vlanid }} bridge={{ bridgeid }} untagged={{ untaggedinterface }} tagged={{ taggedinterface }}
 
-  - name: VLAN Add Bridge 2009
-    community.routeros.command:
-      commands: /interface/bridge/vlan/add vlan-id=2009 bridge=bridge1 untagged=ether1 tagged=ether2
+#  - name: VLAN Add Bridge 2009
+#    community.routeros.command:
+#      commands: /interface/bridge/vlan/add vlan-id=2009 bridge=bridge1 untagged=ether1 tagged=ether2
 
 ...
