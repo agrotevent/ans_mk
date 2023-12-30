@@ -2,6 +2,9 @@
 - name: RouterOS test with network_cli connection
   hosts: Knot:Switche-Core
   gather_facts: false
+  environment:
+    remote_tmp: /
+    
   tasks:
 
   - name: Gather system resources
