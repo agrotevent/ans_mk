@@ -2,8 +2,9 @@
 - name: RouterOS test with network_cli connection
   hosts: Knot:Switche-Core
   vars:
-  - ansible_connection: ansible.netcommon.network_cli
-  - ansible_network_os: community.network.routeros
+  - ansible_connection= ansible.netcommon.network_cli
+  - ansible_network_os= community.network.routeros
+  - ANSIBLE_REMOTE_TMP= /tmp
   gather_facts: false
   environment:
     remote_tmp: /tmp
