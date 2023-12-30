@@ -1,10 +1,10 @@
 ---
 - name: RouterOS Status
   hosts: all
-    vars:
-    - ansible_connection: ansible.netcommon.network_cli
-    - ansible_network_os: community.network.routeros
-    - ANSIBLE_REMOTE_TMP: /tmp
+  vars:
+  - ansible_connection: ansible.netcommon.network_cli
+  - ansible_network_os: community.network.routeros
+  - ANSIBLE_REMOTE_TMP: /tmp
   gather_facts: false
   tasks:
 
