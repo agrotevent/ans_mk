@@ -32,6 +32,5 @@
         - /system routerboard print
         - /interface ethernet print
       wait_for:
-        - result[0] contains x86
         - result[1] contains ether1
 ...
