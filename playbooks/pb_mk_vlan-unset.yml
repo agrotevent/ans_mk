@@ -1,0 +1,36 @@
+---
+  #Interfaces zu Vlan hinzufügen/entfernen
+
+- name: "Add VLAN Bridge/Interface"
+  hosts: all
+  vars:
+  - ansible_connection: ansible.netcommon.network_cli
+  - ansible_network_os: community.network.routeros
+  - ANSIBLE_REMOTE_TMP: /tmp
+
+#Variablen für die VLANs
+    vlanid: 2014
+    vlanname: testvlan20
+    bridgeid: bridge1
+    taggedinterface: ether2
+    untaggedinterface: ether1,bridge1
+    commentvar: Ansible20
+
+
+  gather_facts: false
+  environment:
+    remote_tmp:  /tmp/.ansible/tmp
+
+  tasks:
+
+#  - name: VLAN Add Interface {{ vlanid }}
+#    community.routeros.command:
+#      commands: /interface/vlan/add vlan-id={{ vlanid }} interface={{ bridgeid }} name={{ vlanname }}  comment={{commentvar}}
+
+  - name: VLAN Set Tagged {{ vlanid }}
+    community.routeros.command:
+      commands:
+        - "/interface/bridge/vlan/set [find vlan-ids={{ vlanid }}] bridge={{ bridgeid }} tagged={{ taggedinterface }} untagged={{ untaggedinterface }} comment={{commentvar}}"
+
+
+...
