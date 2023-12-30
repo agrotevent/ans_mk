@@ -15,7 +15,7 @@
     bridgeid: bridge1
     taggedinterface: ether2
     untaggedinterface: ether1,bridge1
-    commentvar: Ansible20
+    commentvar: Ansible21
 
 
   gather_facts: false
@@ -31,6 +31,11 @@
   - name: VLAN Add Interface {{ vlanid }}
     community.routeros.command:
       commands: /interface/vlan/add vlan-id={{ vlanid }} interface={{ bridgeid }} name={{ vlanname }}  comment={{commentvar}}
+
+  - name: VLAN Set Interface {{ vlanid }}
+    community.routeros.command:
+      commands: /interface/vlan/set [find vlan-ids={{ vlanid }}] interface={{ bridgeid }} name={{ vlanname }}  comment={{commentvar}}
+
 
   - name: VLAN entfernen vorm anlegen {{ vlanid }}
     community.routeros.command:
