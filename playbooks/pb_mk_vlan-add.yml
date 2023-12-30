@@ -20,6 +20,10 @@
     community.routeros.command:
       commands: /interface/vlan/add vlan-id=[vlanid] interface=[bridgeid] name=[vlanname]
 
+  - name: VLAN Add Interface 2009
+    community.routeros.command:
+      commands: /interface/vlan/add vlan-id=2009 interface=bridge1 name=testvlan
+
   - name: VLAN Add Bridge
     community.routeros.command:
       commands: /interface/bridge/vlan/add vlan-id=[vlanid] bridge=[bridgeid] untagged=[untaggedinterface] tagged=[taggedinterface]
