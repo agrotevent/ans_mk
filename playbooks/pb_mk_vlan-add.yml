@@ -5,13 +5,11 @@
   - ansible_connection: ansible.netcommon.network_cli
   - ansible_network_os: community.network.routeros
   - ANSIBLE_REMOTE_TMP: /tmp
-    vlanid: 2015
-    vlanname: testvlan7
+    vlanid: 2016
+    vlanname: testvlan8
     bridgeid: bridge1
     taggedinterface: ether2
-    untaggedinterface:
-      ether1
-      bridge1
+    untaggedinterface: ether1,bridge1
     commentvar: Ansible
   gather_facts: false
   environment:
@@ -29,7 +27,8 @@
 
   - name: VLAN Add Bridge {{ vlanid }}
     community.routeros.command:
-      commands: /interface/bridge/vlan/add vlan-id={{ vlanid }} bridge={{ bridgeid }} tagged={{ taggedinterface|join(',')  }} untagged={{ untaggedinterface|join(',')  }} comment={{commentvar}}
+      commands:
+        - "/interface/bridge/vlan/add vlan-id={{ vlanid }} bridge={{ bridgeid }} tagged={{ taggedinterface }} untagged={{ untaggedinterface }} comment={{commentvar}}"
 
 #  - name: VLAN Add Bridge 2009
 #    community.routeros.command:
