@@ -5,11 +5,11 @@
   - ansible_connection: ansible.netcommon.network_cli
   - ansible_network_os: community.network.routeros
   - ANSIBLE_REMOTE_TMP: /tmp
-    vlanid: 2012
-    vlanname: testvlan4
+    vlanid: 2013
+    vlanname: testvlan5
     bridgeid: bridge1
     taggedinterface: ether2
-    untaggedinterface: ether1,bridge1
+    untaggedinterface: ether1
     commentvar: Ansible
   gather_facts: false
   environment:
