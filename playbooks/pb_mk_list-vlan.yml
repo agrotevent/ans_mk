@@ -12,7 +12,7 @@
   tasks:
   - name: List VLAN Bridge
     community.routeros.command:
-      commands: /bridge vlan print
+      commands: /interface/bridge vlan print
     register: vlan_bridge_output
 
   - name: Display VLAN Bridge
