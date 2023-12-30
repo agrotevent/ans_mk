@@ -34,7 +34,7 @@
 
   - name: VLAN Set Interface {{ vlanid }}
     community.routeros.command:
-      commands: /interface/vlan/set [find vlan-ids={{ vlanid }}] interface={{ bridgeid }} name={{ vlanname }}  comment={{commentvar}}
+      commands: /interface/vlan/set [find vlan-id={{ vlanid }}] interface={{ bridgeid }} name={{ vlanname }}  comment={{commentvar}}
 
 
   - name: VLAN entfernen vorm anlegen {{ vlanid }}
