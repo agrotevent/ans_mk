@@ -1,15 +1,15 @@
 ---
-  - name: "Add VLAN Bridge/Interface"
-    hosts: MikrotikKNOT
-    vars:
-    - ansible_connection: ansible.netcommon.network_cli
-    - ansible_network_os: community.network.routeros
-    - ANSIBLE_REMOTE_TMP: /tmp
+- name: "Add VLAN Bridge/Interface"
+  hosts: MikrotikKNOT
+  vars:
+  - ansible_connection: ansible.netcommon.network_cli
+  - ansible_network_os: community.network.routeros
+  - ANSIBLE_REMOTE_TMP: /tmp
   gather_facts: false
   environment:
     remote_tmp:  /tmp/.ansible/tmp
 
-tasks:
+  tasks:
 
     - name: Check version
       raw: /system package update check-for-updates
