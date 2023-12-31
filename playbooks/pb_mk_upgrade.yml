@@ -1,4 +1,16 @@
 ---
+  - name: "Add VLAN Bridge/Interface"
+    hosts: MikrotikKNOT
+    vars:
+    - ansible_connection: ansible.netcommon.network_cli
+    - ansible_network_os: community.network.routeros
+    - ANSIBLE_REMOTE_TMP: /tmp
+  gather_facts: false
+  environment:
+    remote_tmp:  /tmp/.ansible/tmp
+
+tasks:
+
     - name: Check version
       raw: /system package update check-for-updates
 
@@ -16,7 +28,7 @@
            - /system package update install
       when: output.stdout is search('available')
 
-  tasks:
+
    - name: Performing backup of Mikrotik to local storage
      raw: /system backup save name {{inventory_hostname}}
 ...
