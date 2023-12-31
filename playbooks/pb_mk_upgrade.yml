@@ -1,5 +1,5 @@
 ---
-- name: "Add VLAN Bridge/Interface"
+- name: "Upgrade"
   hosts: MikrotikKNOT
   vars:
   - ansible_connection: ansible.netcommon.network_cli
