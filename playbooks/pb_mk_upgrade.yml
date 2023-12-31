@@ -29,6 +29,6 @@
       when: output.stdout is search('available')
 
 
-   - name: Performing backup of Mikrotik to local storage
-     raw: /system backup save name {{inventory_hostname}}
+#   - name: Performing backup of Mikrotik to local storage
+#     raw: /system backup save name {{inventory_hostname}}
 ...
