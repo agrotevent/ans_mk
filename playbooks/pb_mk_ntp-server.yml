@@ -1,0 +1,27 @@
+---
+- name: "NTP Client Configuration"
+  hosts: MikrotikKNOT
+  vars:
+  - ansible_connection: ansible.netcommon.network_cli
+  - ansible_network_os: community.network.routeros
+  - ANSIBLE_REMOTE_TMP: /tmp
+
+#Variablen für die SNMP Einstellungen Community/Location
+    ntp-server: ptbtime1.ptb.de
+
+  gather_facts: false
+  environment:
+    remote_tmp:  /tmp/.ansible/tmp
+
+
+
+  tasks:
+
+  - name: add ntp server
+    community.routeros.command:
+      commands: /system/ntp/client/servers/add address={{ ntp-server }}
+
+
+  - name: aktivate ntp Client
+    community.routeros.command:
+      commands: /system/ntp/client/set enabled=yes  servers={{ ntp-server }}

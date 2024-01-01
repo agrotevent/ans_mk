@@ -1,0 +1,28 @@
+---
+- name: "SSH Key Login"
+  hosts: MikrotikKNOT
+  vars:
+  - ansible_connection: ansible.netcommon.network_cli
+  - ansible_network_os: community.network.routeros
+  - ANSIBLE_REMOTE_TMP: /tmp
+
+#Variablen für die SNMP Einstellungen Community/Location
+    sshkey-name: ssh-key-AGMacbook
+    sshkey-key: 
+
+  gather_facts: false
+  environment:
+    remote_tmp:  /tmp/.ansible/tmp
+
+
+
+  tasks:
+
+  - name: Add SSH Key
+    community.routeros.command:
+      commands: /file/add name={{ sshkey-name }} contents="{{ sshkey-key }}"
+
+
+  - name: Add Key to Users
+    community.routeros.command:
+      commands: /user/ssh-keys/import user=admin public-key-file={{ sshkey-name }}
