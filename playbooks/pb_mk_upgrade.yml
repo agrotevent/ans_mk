@@ -31,9 +31,9 @@
           - /system package update update-check
         register: version-new-output
 
-      - name: print variable2
-        debug:
-          msg: "{{ version-new-output }}"
+    - name: print variable2
+      debug:
+        msg: "{{ version-new-output }}"
 
   #- name: Check if an update is needed
   #  community.routeros.command:
@@ -45,11 +45,11 @@
   #    debug:
   #      msg: "{{ output }}"
 
-      - name: Run upgrade if new version is available
-        community.routeros.command:
-          commands:
-            - /system package update install
-            when: version-new-output is search('available')
+    - name: Run upgrade if new version is available
+      community.routeros.command:
+        commands:
+          - /system package update install
+        when: version-new-output is search('available')
 
 
 #   - name: Performing backup of Mikrotik to local storage
