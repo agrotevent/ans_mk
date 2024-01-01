@@ -1,3 +1,8 @@
+#################################################################
+#Update-Check und Upgrade bei neuer Firmware inkl Restart       #
+#Funktion: einwandfrei, Stand 01.01.2024                        #
+#Freigabe zur Verwendung                                        #
+#################################################################
 ---
 - name: "Upgrade"
   hosts: all
