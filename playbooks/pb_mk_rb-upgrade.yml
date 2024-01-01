@@ -1,3 +1,9 @@
+#################################################################
+#das Upgrade funktioniert nicht ohne manuelle Bestätigungg      #
+#Damit Upgrade nur als "Autoupgrade" bei nächstem Restart       #
+#Freigabe zur Verwendung                                        #
+#################################################################
+
 ---
 - name: "Upgrade"
   hosts: all
@@ -11,11 +17,11 @@
 
     tasks:
 
-    - name: Routerboard Upgrade
+    - name: Set Autoupgrade auf yes, Firmwareupgrade bei nächstem Restart
       community.routeros.command:
         commands:
-          - /system/routerboard/upgrade
-      
+          -  /system routerboard settings set auto-upgrade=yes
+
 
   #- name: Check if an update is needed
   #  community.routeros.command:

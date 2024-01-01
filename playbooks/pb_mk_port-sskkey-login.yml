@@ -1,6 +1,6 @@
 ---
 - name: "SSH Key Login"
-  hosts: MikrotikKNOT
+  hosts: all
   vars:
   - ansible_connection: ansible.netcommon.network_cli
   - ansible_network_os: community.network.routeros
@@ -8,7 +8,7 @@
 
 #Variablen für die SNMP Einstellungen Community/Location
     sshkey-name: ssh-key-AGMacbook
-    sshkey-key: 
+    sshkey-key:
 
   gather_facts: false
   environment:
