@@ -49,7 +49,7 @@
       community.routeros.command:
         commands:
           - /system package update install
-        when: versionnewoutput is search('available')
+      when: versionnewoutput is search('available')
 
 
 #   - name: Performing backup of Mikrotik to local storage
