@@ -1,13 +1,22 @@
+[Mikrotik:children]
+Knot
+SwitcheCore
+SwitcheIDF
+hAPAX3
+wAPAC
+Richtfunk
+
+[Mikrotik:vars]
+ansible_connection= ansible.netcommon.network_cli
+ansible_network_os= community.network.routeros
+
+
 
 
 [Knot]
 MK-KNOT ansible_host=10.13.36.20
 
-[Knot:vars]
-ansible_connection= ansible.netcommon.network_cli
-ansible_network_os= community.network.routeros
-
-#[Switche-Core]
+#[SwitcheCore]
 #Core-A1 ansible_host=10.13.37.2
 #Core-A2 ansible_host=10.13.37.3
 #Core-SW1 ansible_host=10.13.37.11
@@ -15,7 +24,7 @@ ansible_network_os= community.network.routeros
 #Core-B2 ansible_host=10.13.37.5
 #Core-SW2 ansible_host=10.13.37.12
 
-#[Switche-IDF]
+#[SwitcheIDF]
 #SW3 ansible_host=10.13.37.13
 #SW4 ansible_host=10.13.37.14
 #SW5 ansible_host=10.13.37.15
@@ -25,39 +34,39 @@ ansible_network_os= community.network.routeros
 #SW9 ansible_host=10.13.37.19
 #SW10 ansible_host=10.13.37.20
 
-#[hAP AX3]
-#AP1 ansible_host=10.13.37.101
-#AP2 ansible_host=10.13.37.102
-#AP3 ansible_host=10.13.37.103
-#AP4 ansible_host=10.13.37.104
-#AP5 ansible_host=10.13.37.105
-#AP6 ansible_host=10.13.37.106
-#AP7 ansible_host=10.13.37.107
-#AP8 ansible_host=10.13.37.108
-#AP9 ansible_host=10.13.37.109
-#AP10 ansible_host=10.13.37.110
-#AP11 ansible_host=10.13.37.111
-#AP12 ansible_host=10.13.37.112
-#AP13 ansible_host=10.13.37.113
-#AP14 ansible_host=10.13.37.114
-#AP15 ansible_host=10.13.37.115
-#AP16 ansible_host=10.13.37.116
-#AP17 ansible_host=10.13.37.117
-#AP18 ansible_host=10.13.37.118
-#AP19 ansible_host=10.13.37.119
-#AP20 ansible_host=10.13.37.120
-#AP21 ansible_host=10.13.37.121
-#AP22 ansible_host=10.13.37.122
-#AP23 ansible_host=10.13.37.123
-#AP24 ansible_host=10.13.37.124
-#AP25 ansible_host=10.13.37.125
-#AP26 ansible_host=10.13.37.126
-#AP27 ansible_host=10.13.37.127
-#AP28 ansible_host=10.13.37.128
-#AP29 ansible_host=10.13.37.129
-#AP30 ansible_host=10.13.37.130
+#[hAPAX3]
+#AP101 ansible_host=10.13.37.101
+#AP102 ansible_host=10.13.37.102
+#AP103 ansible_host=10.13.37.103
+#AP104 ansible_host=10.13.37.104
+#AP105 ansible_host=10.13.37.105
+#AP106 ansible_host=10.13.37.106
+#AP107 ansible_host=10.13.37.107
+AP108 ansible_host=10.13.37.108
+#AP109 ansible_host=10.13.37.109
+#AP110 ansible_host=10.13.37.110
+#AP111 ansible_host=10.13.37.111
+#AP112 ansible_host=10.13.37.112
+#AP113 ansible_host=10.13.37.113
+#AP114 ansible_host=10.13.37.114
+#AP115 ansible_host=10.13.37.115
+#AP116 ansible_host=10.13.37.116
+#AP117 ansible_host=10.13.37.117
+#AP118 ansible_host=10.13.37.118
+#AP119 ansible_host=10.13.37.119
+#AP120 ansible_host=10.13.37.120
+#AP121 ansible_host=10.13.37.121
+#AP122 ansible_host=10.13.37.122
+#AP123 ansible_host=10.13.37.123
+#AP124 ansible_host=10.13.37.124
+#AP125 ansible_host=10.13.37.125
+#AP126 ansible_host=10.13.37.126
+#AP127 ansible_host=10.13.37.127
+#AP128 ansible_host=10.13.37.128
+#AP129 ansible_host=10.13.37.129
+#AP130 ansible_host=10.13.37.130
 
-#[wAP AC]
+#[wAPAC]
 #AP0.1 ansible_host=10.13.37.51
 #AP0.2 ansible_host=10.13.37.52
 #AP0.3 ansible_host=10.13.37.53
