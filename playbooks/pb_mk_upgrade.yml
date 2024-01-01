@@ -19,7 +19,7 @@
       community.routeros.command:
         commands:
           - /system package print
-        register: version-output
+      register: version-output
 
     - name: print variable
       debug:
@@ -29,7 +29,7 @@
       community.routeros.command:
         commands:
           - /system package update update-check
-        register: version-new-output
+      register: version-new-output
 
     - name: print variable2
       debug:
