@@ -28,7 +28,7 @@
     - name: update-check Version
       community.routeros.command:
         commands:
-          - /system package update update-check
+          - /system package update check-for-updates
       register: versionnewoutput
 
     - name: print variable2
@@ -49,7 +49,7 @@
       community.routeros.command:
         commands:
           - /system package update install
-        when: version-new-output is search('available')
+        when: versionnewoutput is search('available')
 
 
 #   - name: Performing backup of Mikrotik to local storage
