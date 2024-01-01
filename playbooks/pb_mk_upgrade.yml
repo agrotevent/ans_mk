@@ -19,21 +19,21 @@
       community.routeros.command:
         commands:
           - /system package print
-      register: version-output
+      register: versionaltoutput
 
     - name: print variable
       debug:
-        msg: "{{ version-output }}"
+        msg: "{{ versionaltoutput }}"
 
     - name: update-check Version
       community.routeros.command:
         commands:
           - /system package update update-check
-      register: version-new-output
+      register: versionnewoutput
 
     - name: print variable2
       debug:
-        msg: "{{ version-new-output }}"
+        msg: "{{ versionnewoutput }}"
 
   #- name: Check if an update is needed
   #  community.routeros.command:
