@@ -15,22 +15,41 @@
 #    community.routeros.command:
 #      commands: /system package update install
 
-
-  - name: Check if an update is needed
+  - name: aktuelle Version
     community.routeros.command:
       commands:
-        - "[:put ([/system package update check-for-updates])]"
-    register: output
+        - /system package print
+      register: version-output
 
-    - name: print variable
-      debug:
-        msg: "{{ output }}"
+      - name: print variable
+        debug:
+          msg: "{{ version-output }}"
+
+    - name: update-check Version
+      community.routeros.command:
+        commands:
+          - /system package update update-check
+        register: version-new-output
+
+      - name: print variable2
+        debug:
+          msg: "{{ version-new-output }}"
+
+  #- name: Check if an update is needed
+  #  community.routeros.command:
+  #    commands:
+  #      - "[:put ([/system package update check-for-updates])]"
+  #  register: output
+
+  #  - name: print variable
+  #    debug:
+  #      msg: "{{ output }}"
 
     - name: Run upgrade if new version is available
       community.routeros.command:
         commands:
            - /system package update install
-      when: output.stdout is search('available')
+      when: version-new-output is search('available')
 
 
 #   - name: Performing backup of Mikrotik to local storage
