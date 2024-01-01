@@ -15,15 +15,15 @@
 #    community.routeros.command:
 #      commands: /system package update install
 
-  - name: aktuelle Version
-    community.routeros.command:
-      commands:
-        - /system package print
-      register: version-output
+    - name: aktuelle Version
+      community.routeros.command:
+        commands:
+          - /system package print
+          register: version-output
 
-      - name: print variable
-        debug:
-          msg: "{{ version-output }}"
+    - name: print variable
+      debug:
+        msg: "{{ version-output }}"
 
     - name: update-check Version
       community.routeros.command:
@@ -45,11 +45,11 @@
   #    debug:
   #      msg: "{{ output }}"
 
-    - name: Run upgrade if new version is available
-      community.routeros.command:
-        commands:
-           - /system package update install
-      when: version-new-output is search('available')
+      - name: Run upgrade if new version is available
+        community.routeros.command:
+          commands:
+            - /system package update install
+            when: version-new-output is search('available')
 
 
 #   - name: Performing backup of Mikrotik to local storage
