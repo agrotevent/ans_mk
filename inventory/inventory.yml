@@ -1,22 +1,7 @@
-[Mikrotik:children]
-Knot
-SwitcheCore
-SwitcheIDF
-hAPAX3
-wAPAC
-Richtfunk
-
-[Mikrotik:vars]
-ansible_connection= ansible.netcommon.network_cli
-ansible_network_os= community.network.routeros
-
-
-
-
 [Knot]
-MK-KNOT ansible_host=10.13.36.20
+MKKNOT ansible_host=10.13.36.20
 
-#[SwitcheCore]
+[SwitcheCore]
 #Core-A1 ansible_host=10.13.37.2
 #Core-A2 ansible_host=10.13.37.3
 #Core-SW1 ansible_host=10.13.37.11
@@ -24,7 +9,7 @@ MK-KNOT ansible_host=10.13.36.20
 #Core-B2 ansible_host=10.13.37.5
 #Core-SW2 ansible_host=10.13.37.12
 
-#[SwitcheIDF]
+[SwitcheIDF]
 #SW3 ansible_host=10.13.37.13
 #SW4 ansible_host=10.13.37.14
 #SW5 ansible_host=10.13.37.15
@@ -34,7 +19,7 @@ MK-KNOT ansible_host=10.13.36.20
 #SW9 ansible_host=10.13.37.19
 #SW10 ansible_host=10.13.37.20
 
-#[hAPAX3]
+[hAPAX3]
 #AP101 ansible_host=10.13.37.101
 #AP102 ansible_host=10.13.37.102
 #AP103 ansible_host=10.13.37.103
@@ -66,7 +51,7 @@ AP108 ansible_host=10.13.37.108
 #AP129 ansible_host=10.13.37.129
 #AP130 ansible_host=10.13.37.130
 
-#[wAPAC]
+[wAPAC]
 #AP0.1 ansible_host=10.13.37.51
 #AP0.2 ansible_host=10.13.37.52
 #AP0.3 ansible_host=10.13.37.53
@@ -89,7 +74,7 @@ AP108 ansible_host=10.13.37.108
 #AP0.20 ansible_host=10.13.37.70
 
 
-#[Richtfunk]
+[Richtfunk]
 #LINK-A1 ansible_host=10.13.37.201
 #LINK-A2 ansible_host=10.13.37.202
 #LINK-B1 ansible_host=10.13.37.203
@@ -98,3 +83,15 @@ AP108 ansible_host=10.13.37.108
 #LINK-C2 ansible_host=10.13.37.206
 #LINK-D1 ansible_host=10.13.37.207
 #LINK-D2 ansible_host=10.13.37.208
+
+[Mikrotik:children]
+Knot
+SwitcheCore
+SwitcheIDF
+hAPAX3
+wAPAC
+Richtfunk
+
+[Mikrotik:vars]
+ansible_connection= ansible.netcommon.network_cli
+ansible_network_os= community.network.routeros
