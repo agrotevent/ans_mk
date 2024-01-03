@@ -3,19 +3,19 @@
   #Zusätzlich Kommentare möglich
 
 - name: "Add VLAN Bridge/Interface"
-  hosts: MikrotikKNOT
+  hosts: SwitcheIDF
   vars:
   - ansible_connection: ansible.netcommon.network_cli
   - ansible_network_os: community.network.routeros
   - ANSIBLE_REMOTE_TMP: /tmp
 
 #Variablen für die VLANs
-    vlanid: 2030
-    vlanname: testvlan30
-    bridgeid: bridge1
-    taggedinterface: ether2
-    untaggedinterface: ether1,bridge1
-    commentvar: VLAN 2030: Nutzung für
+#    vlanid: 2030
+#    vlanname: testvlan30
+#    bridgeid: bridge1
+#    untaggedinterface: ""
+#    taggedinterfaceidftrunk: bridge,sfp-sfpplus1,sfp-sfpplus2,sfp-sfpplus3,sfp-sfpplus4
+#    commentvar: VLAN 2030: Nutzung für
 
 
   gather_facts: false
@@ -48,7 +48,7 @@
   - name: VLAN Add Bridge {{ vlanid }}
     community.routeros.command:
       commands:
-        - "/interface/bridge/vlan/add vlan-id={{ vlanid }} bridge={{ bridgeid }} tagged={{ taggedinterface }} untagged={{ untaggedinterface }} comment={{commentvar}}"
+        - "/interface/bridge/vlan/add vlan-id={{ vlanid }} bridge={{ bridgeid }} tagged={{ taggedinterfaceidftrunk }} untagged={{ untaggedinterfacetrunk }} comment={{commentvar}}"
 
 
 ...
