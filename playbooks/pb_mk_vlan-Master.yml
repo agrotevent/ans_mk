@@ -36,4 +36,4 @@
   import_playbook: pb_mk_vlan-add-SwitcheIDF-Trunk.yml
 
 - name: Add VLAN SwitcheIDF (Access)
-  import_playbook: pb_mk_vlan-add-SwitcheCore-Access.yml
+  import_playbook: pb_mk_vlan-add-SwitcheIDF-Access.yml
