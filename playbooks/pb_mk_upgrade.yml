@@ -4,7 +4,7 @@
 #Freigabe zur Verwendung                                        #
 #################################################################
 ---
-- name: "Upgrade"
+- name: "Upgrade to new Firmware"
   hosts: all
   vars:
   - ansible_connection: ansible.netcommon.network_cli
