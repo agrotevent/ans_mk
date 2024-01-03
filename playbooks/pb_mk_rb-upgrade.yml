@@ -5,7 +5,7 @@
 #################################################################
 
 ---
-- name: "Upgrade"
+- name: Routerboard-Upgrade
   hosts: all
   vars:
   - ansible_connection: ansible.netcommon.network_cli
@@ -15,7 +15,7 @@
   environment:
     remote_tmp:  /tmp/.ansible/tmp
 
-    tasks:
+tasks:
 
     - name: Set Autoupgrade auf yes, Firmwareupgrade bei nächstem Restart
       community.routeros.command:
