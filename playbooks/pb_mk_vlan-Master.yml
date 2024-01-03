@@ -10,7 +10,7 @@
   - ANSIBLE_REMOTE_TMP: /tmp
 
 #Variablen für die VLANs
-    vlanid: 3030
+  - vlanid: 3030
     vlanname: testvlan3030
     bridgeid: bridge
     untaggedinterfacetrunk: ""
