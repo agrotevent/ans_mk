@@ -13,7 +13,8 @@
 
   - name: Reboot all Devices
     community.routeros.command:
-    commands: ":execute {/system reboot};"
+      commands: 
+          - ":execute {/system reboot};"
 
 
 ...
