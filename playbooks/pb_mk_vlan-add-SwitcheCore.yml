@@ -54,12 +54,12 @@
 
 
 #VLAN Kommentieren
-  - name: VLAN Add Bridge {{ vlanid }}
+  - name: VLAN comment Bridge {{ vlanid }}
     community.routeros.command:
       commands:
         - "/interface/bridge/vlan/set [find vlan-ids={{ vlanid }}] comment={{ commentvar }}"
 
-  - name: VLAN Add Bridge {{ vlanid }}
+  - name: VLAN comment Bridge {{ vlanid }}
     community.routeros.command:
       commands:
         - "/interface/vlan/set [find vlan-id={{ vlanid }}] comment={{ commentvar }}"
