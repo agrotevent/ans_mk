@@ -51,7 +51,7 @@
   - name: VLAN Add Bridge {{ vlanid }}
     community.routeros.command:
       commands:
-        - "/interface/bridge/vlan add [find vlan-ids={{ vlanid }}] bridge={{ bridgeid }}  untagged={{ untaggedinterface }} comment={{commentvar}}"
+        - "/interface/bridge/vlan/add vlan-ids={{ vlanid }} bridge={{ bridgeid }}  untagged={{ untaggedinterface }} comment={{commentvar}}"
 
 
 ...
