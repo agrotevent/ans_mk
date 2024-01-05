@@ -38,11 +38,14 @@
 #      commands: /interface/bridge/vlan/remove [find vlan-ids={{ vlanid }}]
 
 #VLAN im Bereich Bridge hinzufügen und Ports tagged/untagged eintragen
-  - name: IDF TRUNK VLAN Add Bridge {{ vlanid }}
+
+#Core VLAN im Bereich Bridge hinzufügen und Ports tagged/untagged eintragen
+  - name: IDF TRUNK VLAN Add Bridge {{ vlanid }}  {{ vlanname }}
     community.routeros.command:
       commands:
-        - "/interface/bridge/vlan/add vlan-ids={{ vlanid }} bridge={{ bridgeid }} tagged={{ taggedinterfaceidftrunk }} untagged={{ taggedinterfaceidftrunk }}"
+        - "/interface/bridge/vlan/add vlan-ids={{ vlanid }} bridge={{ bridgeid }} tagged={{ taggedinterfaceidftrunk }} untagged={{ untaggedinterfaceidftrunk }}"
 
+#Core VLAN comment Bridge
   - name: IDF TRUNK VLAN Add Bridge {{ vlanid }}  {{ vlanname }}
     community.routeros.command:
       commands:
