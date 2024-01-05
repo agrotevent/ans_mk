@@ -9,9 +9,7 @@
   - ansible_network_os: community.network.routeros
   - ANSIBLE_REMOTE_TMP: /tmp
 
-#Variablen für die VLANs
-    vlanid: 53
-
+  vars_files: mk_vlan.yml
 
   gather_facts: false
   environment:

@@ -9,14 +9,7 @@
   - ansible_network_os: community.network.routeros
   - ANSIBLE_REMOTE_TMP: /tmp
 
-#Variablen für die VLANs
-    vlanid: 100
-    vlanname: Produktion
-    bridgeid: bridge
-    commentvar: WLAN_Produktion
-    untaggedinterface: "ether9"
-    taggedinterfaceidftrunk: "bridge,sfp-sfpplus1,sfp-sfpplus2,sfp-sfpplus3,sfp-sfpplus4"
-
+  vars_files: mk_vlan.yml
 
   gather_facts: false
   environment:
@@ -49,5 +42,3 @@
     community.routeros.command:
       commands:
         - "/interface/bridge/vlan/add vlan-ids={{ vlanid }} bridge={{ bridgeid }} tagged={{ taggedinterfaceidftrunk }} untagged={{ untaggedinterface }} comment={{commentvar}}"
-
-...
