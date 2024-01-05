@@ -10,8 +10,8 @@
   - ANSIBLE_REMOTE_TMP: /tmp
 
 #Variablen für die VLANs
-    vlanid: 50
-    vlanname: Test
+    vlanid: 51
+    vlanname: Test2
     bridgeid: bridge
     untaggedinterfacetrunk: ether1
     taggedinterfacecoretrunk: "bridge,sfp-sfpplus1,sfp-sfpplus2,sfp-sfpplus3,sfp-sfpplus4,sfp-sfpplus5,sfp-sfpplus6,sfp-sfpplus7,sfp-sfpplus8,sfp-sfpplus9,sfp-sfpplus10,sfp-sfpplus11,sfp-sfpplus12,sfp-sfpplus13,sfp-sfpplus14,sfp-sfpplus15,sfp-sfpplus16,sfp-sfpplus17,sfp-sfpplus18,sfp-sfpplus19,sfp-sfpplus20,sfp-sfpplus21,sfp-sfpplus22,sfp-sfpplus23,sfp-sfpplus24,qsfpplus1-1,qsfpplus1-2,qsfpplus1-3,qsfpplus1-4,qsfpplus2-1,qsfpplus2-2,qsfpplus2-3,qsfpplus2-4"
@@ -32,13 +32,13 @@
   - name: VLAN Add Interface {{ vlanid }}
     community.routeros.command:
       commands:
-        - "/interface/vlan/add vlan-id={{ vlanid }} interface=bridge name={{ vlanname }}"
+        - "/interface/vlan/add vlan-id={{ vlanid }} interface={{ bridgeid }} name={{ vlanname }}"
 
 #VLAN Interface einstellungen setzen
   - name: VLAN Set Interface {{ vlanid }}
     community.routeros.command:
       commands:
-        - "/interface/vlan/set [find vlan-id={{ vlanid }}] interface=bridge name={{ vlanname }} "
+        - "/interface/vlan/set [find vlan-id={{ vlanid }}] interface={{ bridgeid }} name={{ vlanname }} "
 
 #VLAN im Bereich Bridge entfernen, um es entsprechend neu anzulegen
 #  - name: VLAN Bridge entfernen vorm anlegen {{ vlanid }}
@@ -50,7 +50,7 @@
   - name: VLAN Add Bridge {{ vlanid }}
     community.routeros.command:
       commands:
-        - "/interface/bridge/vlan/add vlan-ids={{ vlanid }} bridge=bridge tagged={{ taggedinterfacecoretrunk }} untagged={{ untaggedinterfacetrunk }}"
+        - "/interface/bridge/vlan/add vlan-ids={{ vlanid }} bridge={{ bridgeid }} tagged={{ taggedinterfacecoretrunk }} untagged={{ untaggedinterfacetrunk }}"
 
 
 ...
