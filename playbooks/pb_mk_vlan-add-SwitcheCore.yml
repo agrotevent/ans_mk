@@ -4,8 +4,8 @@
 
 - name: "Add VLAN Bridge/Interface"
   hosts: all
-  vars_files: vars/mk_vlan.yml
-  
+  vars_files: /vars/mk_vlan.yml
+
   gather_facts: false
   environment:
     remote_tmp:  /tmp/.ansible/tmp
