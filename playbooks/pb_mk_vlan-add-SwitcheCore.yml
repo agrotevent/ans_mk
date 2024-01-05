@@ -4,24 +4,8 @@
 
 - name: "Add VLAN Bridge/Interface"
   hosts: all
-  vars:
-  - ansible_connection: ansible.netcommon.network_cli
-  - ansible_network_os: community.network.routeros
-  - ANSIBLE_REMOTE_TMP: /tmp
-
-#Variablen für die VLANs
-    vlanid: 810
-    vlanname: Produktion
-    bridgeid: bridge
-    commentvar: WLAN_Produktion
-    untaggedinterfacetrunk: ""
-    taggedinterfacecoretrunk: "bridge,sfp-sfpplus1,sfp-sfpplus2,sfp-sfpplus3,sfp-sfpplus4,sfp-sfpplus5,sfp-sfpplus6,sfp-sfpplus7,sfp-sfpplus8,sfp-sfpplus9,sfp-sfpplus10,sfp-sfpplus11,sfp-sfpplus12,sfp-sfpplus13,sfp-sfpplus14,sfp-sfpplus15,sfp-sfpplus16,sfp-sfpplus17,sfp-sfpplus18,sfp-sfpplus19,sfp-sfpplus20,sfp-sfpplus21,sfp-sfpplus22,sfp-sfpplus23,sfp-sfpplus24,qsfpplus1-1,qsfpplus1-2,qsfpplus1-3,qsfpplus1-4,qsfpplus2-1,qsfpplus2-2,qsfpplus2-3,qsfpplus2-4"
-    untaggedinterface: ""
-    taggedinterfaceidftrunk: "bridge,sfp-sfpplus1,sfp-sfpplus2,sfp-sfpplus3,sfp-sfpplus4,ether2,ether3,ether4,ether5,ether6,ether7,ether8"
-
-
-    commentvar: WLAN_Produktion
-
+  vars_files: vars/mk_vlan.yml
+  
   gather_facts: false
   environment:
     remote_tmp:  /tmp/.ansible/tmp
@@ -30,24 +14,15 @@
 
 
 #VLAN im Bereich Interface anlegen.
-  - name: VLAN Add Interface {{ vlanid }}
-    hosts: all
+  - name: VLAN Add Interface {{ vlanid }}  {{ vlanname }}
     community.routeros.command:
       commands:
         - "/interface/vlan/add vlan-id={{ vlanid }} interface={{ bridgeid }} name={{ vlanname }} comment={{ commentvar }}"
 
 #Core VLAN im Bereich Bridge hinzufügen und Ports tagged/untagged eintragen
-  - name: Core VLAN Add Bridge {{ vlanid }}
-    hosts: SwitcheCore
+  - name: Core VLAN Add Bridge {{ vlanid }}  {{ vlanname }}
     community.routeros.command:
       commands:
         - "/interface/bridge/vlan/add vlan-ids={{ vlanid }} bridge={{ bridgeid }} tagged={{ taggedinterfacecoretrunk }} untagged={{ untaggedinterfacetrunk }} comment={{ commentvar }}"
-
-#IDF VLAN im Bereich Bridge hinzufügen und Ports tagged/untagged eintragen
-  - name: IDF VLAN Add Bridge {{ vlanid }}  {{ vlanname }}
-    hosts: SwitcheIDF
-    community.routeros.command:
-      commands:
-        - "/interface/bridge/vlan/add vlan-ids={{ vlanid }} bridge={{ bridgeid }} tagged={{ taggedinterfaceidftrunk }} untagged={{ untaggedinterface }} comment={{ commentvar }}"
 
 ...

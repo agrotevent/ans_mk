@@ -4,19 +4,19 @@
 
 - name: "Add VLAN Bridge/Interface"
   hosts: SwitcheIDF
-  vars:
-  - ansible_connection: ansible.netcommon.network_cli
-  - ansible_network_os: community.network.routeros
-  - ANSIBLE_REMOTE_TMP: /tmp
-
-#Variablen für die VLANs
-    vlanid: 100
-    vlanname: Produktion
-    bridgeid: bridge
-    commentvar: WLAN_Produktion
-    untaggedinterface: "ether1"
-    taggedinterfaceidfaccess: "bridge,sfp-sfpplus1,sfp-sfpplus2,sfp-sfpplus3,sfp-sfpplus4"
-
+#  vars:
+#  - ansible_connection: ansible.netcommon.network_cli
+#  - ansible_network_os: community.network.routeros
+#  - ANSIBLE_REMOTE_TMP: /tmp
+#
+##Variablen für die VLANs
+  #  vlanid: 100
+  #  vlanname: Produktion
+  #  bridgeid: bridge
+  #  commentvar: WLAN_Produktion
+  #  untaggedinterface: "ether1"
+  #  taggedinterfaceidfaccess: "bridge,sfp-sfpplus1,sfp-sfpplus2,sfp-sfpplus3,sfp-sfpplus4"
+  vars_files: vars/mk_vlan.yml
 
   gather_facts: false
   environment:
@@ -51,6 +51,3 @@
     community.routeros.command:
       commands:
         - "/interface/bridge/port/set [find interface={{ untaggedinterface }}]  pvid={{ vlanid }} comment={{commentvar}}"
-
-
-...
