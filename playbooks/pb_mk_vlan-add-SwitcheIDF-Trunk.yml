@@ -14,7 +14,7 @@
     vlanname: USV
     bridgeid: bridge
     untaggedinterface: ""
-    taggedinterfaceidftrunk: bridge,sfp-sfpplus1,sfp-sfpplus2,sfp-sfpplus3,sfp-sfpplus4
+    taggedinterfaceidftrunk: "bridge,sfp-sfpplus1,sfp-sfpplus2,sfp-sfpplus3,sfp-sfpplus4"
     commentvar: "VLAN {{ vlanid }}: Nutzung für USV"
 
 
