@@ -44,5 +44,6 @@
   - name: Core VLAN Add Bridge {{ vlanid }}  {{ vlanname }}
     community.routeros.command:
       commands:
-        - "/interface/bridge/vlan/set [find vlan-ids={{ vlanid }}] comment={{ commentvar }}""
+        - "/interface/bridge/vlan/set [find vlan-ids={{ vlanid }}] comment={{ commentvar }}"
+
 ...
