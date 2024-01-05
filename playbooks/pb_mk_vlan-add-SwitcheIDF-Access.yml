@@ -48,4 +48,4 @@
   - name: VLAN Set Comment
     community.routeros.command:
       commands:
-        - "/interface/bridge/port/set [find interface={{ untaggedinterface }}]  pvid={{ vlanid }} comment={{commentvar}}"
+        - "/interface/bridge/port/set [find interface={{ vlanid }}]  comment={{commentvar}}"
