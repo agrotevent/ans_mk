@@ -27,7 +27,7 @@
   - name: Core VLAN Add Bridge {{ vlanid }}  {{ vlanname }}
     community.routeros.command:
       commands:
-        - "/interface/bridge/vlan/add vlan-ids={{ vlanid }} bridge={{ bridgeid }} tagged={{ taggedinterfacecoretrunk }} untagged={{ untaggedinterfacetrunk }}"
+        - "/interface/bridge/vlan/add vlan-ids={{ vlanid }} bridge={{ bridgeid }} tagged={{ taggedinterfacecoretrunk }} untagged={{ untaggedinterfacecoretrunk }}"
 
 #Core VLAN comment Bridge
   - name: Core VLAN Add Bridge {{ vlanid }}  {{ vlanname }}
