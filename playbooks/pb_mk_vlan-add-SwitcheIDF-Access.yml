@@ -43,7 +43,7 @@
   - name: VLAN Set Bridge {{ vlanid }} {{ vlanname }}
     community.routeros.command:
       commands:
-        - "/interface/bridge/vlan/set [find vlan-ids={{ vlanid }}]  bridge={{ bridgeid }}  untagged={{ untaggedinterface }}"
+        - "/interface/bridge/vlan/set [find vlan-ids={{ vlanid }}]  bridge={{ bridgeid }}  untagged={{ untaggedinterfaceidfaccess }}"
 
   - name: VLAN Set Comment
     community.routeros.command:
