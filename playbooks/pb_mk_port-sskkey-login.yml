@@ -6,7 +6,7 @@
   - ansible_network_os: community.network.routeros
   - ANSIBLE_REMOTE_TMP: /tmp
 
-#Variablen für die SNMP Einstellungen Community/Location
+#Variablen für die SSH-Key-Einstellungen
     sshkey-name: ssh-key-AGMacbook
     sshkey-key:
 
