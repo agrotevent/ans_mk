@@ -27,7 +27,7 @@
 #VLAN entfernen, falls es bereits angelegt wurde, um es entsprechend neu anzulegen
   - name: VLAN entfernen {{ vlanid }}
     community.routeros.command:
-      commands: /interface/bridge/vlan/remove [find vlan-ids={{ vlanid }}]
+      commands: /interface/vlan/remove [find vlan-id={{ vlanid }}]
 
 
 #VLAN im Bereich Bridge entfernen, um es entsprechend neu anzulegen
