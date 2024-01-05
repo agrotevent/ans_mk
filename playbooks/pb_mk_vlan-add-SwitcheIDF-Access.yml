@@ -10,7 +10,6 @@
   - ANSIBLE_REMOTE_TMP: /tmp
 
 #Variablen für die VLANs
-#    taggedinterfaceidfaccess: bridge1,sfp-sfpplus1,sfp-sfpplus2,sfp-sfpplus3,sfp-sfpplus4,ether1
     vlanid: 4001
     vlanname: USV
     bridgeid: bridge
@@ -51,7 +50,7 @@
   - name: VLAN Add Bridge {{ vlanid }}
     community.routeros.command:
       commands:
-        - "/interface/bridge/vlan/add vlan-ids={{ vlanid }} bridge={{ bridgeid }}  untagged={{ untaggedinterface }} comment={{commentvar}}"
+        - "/interface/bridge/vlan/set [find vlan-ids={{ vlanid }}]  bridge={{ bridgeid }}  untagged={{ untaggedinterface }} comment={{commentvar}}"
 
 
 ...
