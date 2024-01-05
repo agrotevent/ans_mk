@@ -10,12 +10,12 @@
   - ANSIBLE_REMOTE_TMP: /tmp
 
 #Variablen für die VLANs
-#    vlanid: 2030
-#    vlanname: testvlan30
-#    bridgeid: bridge1
-#    untaggedinterface: ""
-#    taggedinterfaceidftrunk: bridge,sfp-sfpplus1,sfp-sfpplus2,sfp-sfpplus3,sfp-sfpplus4
-#    commentvar: VLAN 2030: Nutzung für
+    vlanid: 4001
+    vlanname: USV
+    bridgeid: bridge
+    untaggedinterface: ""
+    taggedinterfaceidftrunk: bridge,sfp-sfpplus1,sfp-sfpplus2,sfp-sfpplus3,sfp-sfpplus4
+    commentvar: "VLAN {{ vlanid }}: Nutzung für USV"
 
 
   gather_facts: false

@@ -25,22 +25,22 @@
   tasks:
 
 #VLAN entfernen, falls es bereits angelegt wurde, um es entsprechend neu anzulegen
-  - name: VLAN entfernen vorm anlegen
+  - name: VLAN entfernen vorm anlegen {{ vlanid }}
     community.routeros.command:
       commands: /interface/bridge/vlan/remove [find vlan-ids={{ vlanid }}]
 
 #VLAN im Bereich Interface anlegen.
-  - name: VLAN Add Interface
+  - name: VLAN Add Interface {{ vlanid }}
     community.routeros.command:
       commands: /interface/vlan/add vlan-id={{ vlanid }} interface={{ bridgeid }} name={{ vlanname }}  comment={{commentvar}}
 
 #VLAN Interface einstellungen setzen
-  - name: VLAN Set Interface
+  - name: VLAN Set Interface {{ vlanid }}
     community.routeros.command:
       commands: /interface/vlan/set [find vlan-id={{ vlanid }}] interface={{ bridgeid }} name={{ vlanname }}  comment={{commentvar}}
 
 #VLAN im Bereich Bridge entfernen, um es entsprechend neu anzulegen
-  - name: VLAN entfernen vorm anlegen
+  - name: VLAN entfernen vorm anlegen {{ vlanid }}
     community.routeros.command:
       commands: /interface/bridge/vlan/remove [find vlan-ids={{ vlanid }}]
 
