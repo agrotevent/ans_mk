@@ -30,14 +30,14 @@
 
 
 #VLAN im Bereich Interface anlegen.
-  - name: "VLAN Add Interface {{ vlanid }}  {{ vlanname }}"
+  - name: VLAN Add Interface {{ vlanid }}
     hosts: all
     community.routeros.command:
       commands:
         - "/interface/vlan/add vlan-id={{ vlanid }} interface={{ bridgeid }} name={{ vlanname }} comment={{ commentvar }}"
 
 #Core VLAN im Bereich Bridge hinzufügen und Ports tagged/untagged eintragen
-  - name: "Core VLAN Add Bridge {{ vlanid }}  {{ vlanname }}"
+  - name: Core VLAN Add Bridge {{ vlanid }}
     hosts: SwitcheCore
     community.routeros.command:
       commands:
