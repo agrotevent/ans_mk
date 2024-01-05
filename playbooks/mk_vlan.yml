@@ -1,7 +1,7 @@
 ---
     vars:
 #Variablen für die VLANs
-    vlanid: 810
+    vlanid: 1000
     vlanname: Produktion
     bridgeid: bridge
     commentvar: WLAN_Produktion
