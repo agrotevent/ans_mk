@@ -10,7 +10,7 @@
   - ANSIBLE_REMOTE_TMP: /tmp
 
 #Variablen für die VLANs
-    vlanid: 51
+    vlanid: 53
 
 
   gather_facts: false
