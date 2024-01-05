@@ -10,10 +10,10 @@
   - ANSIBLE_REMOTE_TMP: /tmp
 
 #Variablen für die VLANs
-    vlanid: "4001"
-    vlanname: "USV"
+    vlanid: "1000"
+    vlanname: "Test"
     bridgeid: "bridge"
-    untaggedinterface: ""
+    untaggedinterface: "ether9"
     taggedinterfaceidftrunk: "bridge,sfp-sfpplus1,sfp-sfpplus2,sfp-sfpplus3,sfp-sfpplus4"
     commentvar: "VLAN {{ vlanid }}: Nutzung für USV"
 
@@ -25,30 +25,29 @@
   tasks:
 
 #VLAN entfernen, falls es bereits angelegt wurde, um es entsprechend neu anzulegen
-  - name: VLAN entfernen vorm anlegen {{ vlanid }}
-    community.routeros.command:
-      commands: /interface/bridge/vlan/remove [find vlan-ids={{ vlanid }}]
+#  - name: VLAN entfernen vorm anlegen {{ vlanid }}
+#    community.routeros.command:
+#      commands: /interface/bridge/vlan/remove [find vlan-ids={{ vlanid }}]
 
 #VLAN im Bereich Interface anlegen.
-#  - name: VLAN Add Interface {{ vlanid }}
-#    community.routeros.command:
-#      commands: /interface/vlan/add vlan-id={{ vlanid }} interface={{ bridgeid }} name={{ vlanname }}  comment={{commentvar}}
+  - name: VLAN Add Interface {{ vlanid }}
+    community.routeros.command:
+      commands: /interface/vlan/add vlan-id={{ vlanid }} interface={{ bridgeid }} name={{ vlanname }}  comment={{commentvar}}
 
 #VLAN Interface einstellungen setzen
-#  - name: VLAN Set Interface {{ vlanid }}
-#    community.routeros.command:
-#      commands: /interface/vlan/set [find vlan-id={{ vlanid }}] interface={{ bridgeid }} name={{ vlanname }}  comment={{commentvar}}
+  - name: VLAN Set Interface {{ vlanid }}
+    community.routeros.command:
+      commands: /interface/vlan/set [find vlan-id={{ vlanid }}] interface={{ bridgeid }} name={{ vlanname }}  comment={{commentvar}}
 
 #VLAN im Bereich Bridge entfernen, um es entsprechend neu anzulegen
-  - name: VLAN entfernen vorm anlegen {{ vlanid }}
-    community.routeros.command:
-      commands: /interface/bridge/vlan/remove [find vlan-ids={{ vlanid }}]
+#  - name: VLAN entfernen vorm anlegen {{ vlanid }}
+#    community.routeros.command:
+#      commands: /interface/bridge/vlan/remove [find vlan-ids={{ vlanid }}]
 
 #VLAN im Bereich Bridge hinzufügen und Ports tagged/untagged eintragen
-#  - name: VLAN Add Bridge {{ vlanid }}
-#    community.routeros.command:
-#      commands:
-#        - "/interface/bridge/vlan/add vlan-ids={{ vlanid }} bridge={{ bridgeid }} tagged={{ taggedinterfaceidftrunk }} untagged={{ untaggedinterface }} comment={{commentvar}}"
-
+  - name: VLAN Add Bridge {{ vlanid }}
+    community.routeros.command:
+      commands:
+        - "/interface/bridge/vlan/add vlan-ids={{ vlanid }} bridge={{ bridgeid }} tagged={{ taggedinterfaceidftrunk }} untagged={{ untaggedinterface }} comment={{commentvar}}"
 
 ...

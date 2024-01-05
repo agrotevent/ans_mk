@@ -10,12 +10,12 @@
   - ANSIBLE_REMOTE_TMP: /tmp
 
 #Variablen für die VLANs
-    vlanid: 4001
-    vlanname: USV
+    vlanid: 1000
+    vlanname: Test
     bridgeid: bridge
     untaggedinterfacetrunk: ""
     taggedinterfacecoretrunk: "bridge,sfp-sfpplus1,sfp-sfpplus2,sfp-sfpplus3,sfp-sfpplus4,sfp-sfpplus5,sfp-sfpplus6,sfp-sfpplus7,sfp-sfpplus8,sfp-sfpplus9,sfp-sfpplus10,sfp-sfpplus11,sfp-sfpplus12,sfp-sfpplus13,sfp-sfpplus14,sfp-sfpplus15,sfp-sfpplus16,sfp-sfpplus17,sfp-sfpplus18,sfp-sfpplus19,sfp-sfpplus20,sfp-sfpplus21,sfp-sfpplus22,sfp-sfpplus23,sfp-sfpplus24,qsfpplus1-1,qsfpplus1-2,qsfpplus1-3,qsfpplus1-4,qsfpplus2-1,qsfpplus2-2,qsfpplus2-3,qsfpplus2-4"
-    commentvar: "VLAN {{ vlanid }}: Nutzung für USV"
+    commentvar: "VLAN {{ vlanid }}: Nutzung für Test"
 
 
   gather_facts: false
@@ -30,14 +30,14 @@
       commands: /interface/bridge/vlan/remove [find vlan-ids={{ vlanid }}]
 
 #VLAN im Bereich Interface anlegen.
-#  - name: VLAN Add Interface {{ vlanid }}
-#    community.routeros.command:
-#      commands: /interface/vlan/add vlan-id={{ vlanid }} interface={{ bridgeid }} name={{ vlanname }}  comment={{commentvar}}
+  - name: VLAN Add Interface {{ vlanid }}
+    community.routeros.command:
+      commands: /interface/vlan/add vlan-id={{ vlanid }} interface={{ bridgeid }} name={{ vlanname }}  comment={{commentvar}}
 
 #VLAN Interface einstellungen setzen
-#  - name: VLAN Set Interface {{ vlanid }}
-#    community.routeros.command:
-#      commands: /interface/vlan/set [find vlan-id={{ vlanid }}] interface={{ bridgeid }} name={{ vlanname }}  comment={{commentvar}}
+  - name: VLAN Set Interface {{ vlanid }}
+    community.routeros.command:
+      commands: /interface/vlan/set [find vlan-id={{ vlanid }}] interface={{ bridgeid }} name={{ vlanname }}  comment={{commentvar}}
 
 #VLAN im Bereich Bridge entfernen, um es entsprechend neu anzulegen
   - name: VLAN entfernen vorm anlegen {{ vlanid }}
@@ -45,10 +45,10 @@
       commands: /interface/bridge/vlan/remove [find vlan-ids={{ vlanid }}]
 
 ##VLAN im Bereich Bridge hinzufügen und Ports tagged/untagged eintragen
-#  - name: VLAN Add Bridge {{ vlanid }}
-#    community.routeros.command:
-#      commands:
-#        - "/interface/bridge/vlan/add vlan-id={{ vlanid }} bridge={{ bridgeid }} tagged={{ taggedinterfacecoretrunk }} untagged={{ untaggedinterfacetrunk }} comment={{commentvar}}"
+  - name: VLAN Add Bridge {{ vlanid }}
+    community.routeros.command:
+      commands:
+        - "/interface/bridge/vlan/add vlan-id={{ vlanid }} bridge={{ bridgeid }} tagged={{ taggedinterfacecoretrunk }} untagged={{ untaggedinterfacetrunk }} comment={{commentvar}}"
 
 
 ...
