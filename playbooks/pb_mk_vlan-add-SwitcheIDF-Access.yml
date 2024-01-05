@@ -10,12 +10,13 @@
   - ANSIBLE_REMOTE_TMP: /tmp
 
 #Variablen für die VLANs
-#    vlanid: 2030
-#    vlanname: testvlan30
-#    bridgeid: bridge1
-#    untaggedinterface: "ether2"
 #    taggedinterfaceidfaccess: bridge1,sfp-sfpplus1,sfp-sfpplus2,sfp-sfpplus3,sfp-sfpplus4,ether1
-#    commentvar: VLAN {{ vlanid }}: Nutzung für
+    vlanid: 4001
+    vlanname: USV
+    bridgeid: bridge
+    untaggedinterface: "ether1"
+    taggedinterfaceidfaccess: "bridge,sfp-sfpplus1,sfp-sfpplus2,sfp-sfpplus3,sfp-sfpplus4"
+    commentvar: "VLAN {{ vlanid }}: Nutzung für USV"
 
 
   gather_facts: false
@@ -44,11 +45,13 @@
 #    community.routeros.command:
 #      commands: /interface/bridge/vlan/remove [find vlan-ids={{ vlanid }}]
 
+#tagged={{ taggedinterfaceidfaccess }}
+
 #VLAN im Bereich Bridge hinzufügen und Ports tagged/untagged eintragen
   - name: VLAN Add Bridge {{ vlanid }}
     community.routeros.command:
       commands:
-        - "/interface/bridge/vlan/set [find vlan-ids={{ vlanid }}] bridge={{ bridgeid }} tagged={{ taggedinterfaceidfaccess }} untagged={{ untaggedinterfaceidfaccess }} comment={{commentvar}}"
+        - "/interface/bridge/vlan/set [find vlan-ids={{ vlanid }}] bridge={{ bridgeid }}  untagged={{ untaggedinterface }} comment={{commentvar}}"
 
 
 ...
