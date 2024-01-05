@@ -10,12 +10,7 @@
   - ANSIBLE_REMOTE_TMP: /tmp
 
 #Variablen für die VLANs
-    vlanid: 50
-    vlanname: testvlan30
-    bridgeid: bridge1
-    taggedinterface: ether2
-    untaggedinterface: ether1,bridge1
-    commentvar: Ansible30
+    vlanid: 51
 
 
   gather_facts: false
