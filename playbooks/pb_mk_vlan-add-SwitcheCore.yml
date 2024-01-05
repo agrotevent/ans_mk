@@ -32,12 +32,12 @@
 #VLAN im Bereich Interface anlegen.
   - name: VLAN Add Interface {{ vlanid }}
     community.routeros.command:
-      commands: /interface/vlan/add vlan-id={{ vlanid }} interface={{ bridgeid }} name={{ vlanname }}  comment={{commentvar}}
+      commands: /interface/vlan/add vlan-ids={{ vlanid }} interface={{ bridgeid }} name={{ vlanname }}  comment={{commentvar}}
 
 #VLAN Interface einstellungen setzen
   - name: VLAN Set Interface {{ vlanid }}
     community.routeros.command:
-      commands: /interface/vlan/set [find vlan-id={{ vlanid }}] interface={{ bridgeid }} name={{ vlanname }}  comment={{commentvar}}
+      commands: /interface/vlan/set [find vlan-ids={{ vlanid }}] interface={{ bridgeid }} name={{ vlanname }}  comment={{commentvar}}
 
 #VLAN im Bereich Bridge entfernen, um es entsprechend neu anzulegen
   - name: VLAN entfernen vorm anlegen {{ vlanid }}
@@ -48,7 +48,7 @@
   - name: VLAN Add Bridge {{ vlanid }}
     community.routeros.command:
       commands:
-        - "/interface/bridge/vlan/add vlan-id={{ vlanid }} bridge={{ bridgeid }} tagged={{ taggedinterfacecoretrunk }} untagged={{ untaggedinterfacetrunk }} comment={{commentvar}}"
+        - "/interface/bridge/vlan/add vlan-ids={{ vlanid }} bridge={{ bridgeid }} tagged={{ taggedinterfacecoretrunk }} untagged={{ untaggedinterfacetrunk }} comment={{commentvar}}"
 
 
 ...
