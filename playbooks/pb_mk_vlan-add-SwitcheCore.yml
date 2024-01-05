@@ -3,19 +3,24 @@
   #Zusätzlich Kommentare möglich
 
 - name: "Add VLAN Bridge/Interface"
-  hosts: SwitcheCore
+  hosts: all
   vars:
   - ansible_connection: ansible.netcommon.network_cli
   - ansible_network_os: community.network.routeros
   - ANSIBLE_REMOTE_TMP: /tmp
 
 #Variablen für die VLANs
-    vlanid: 53
-    vlanname: Test3
+    vlanid: 810
+    vlanname: Produktion
     bridgeid: bridge
-    untaggedinterfacetrunk: ether1
+    commentvar: WLAN_Produktion
+    untaggedinterfacetrunk: ""
     taggedinterfacecoretrunk: "bridge,sfp-sfpplus1,sfp-sfpplus2,sfp-sfpplus3,sfp-sfpplus4,sfp-sfpplus5,sfp-sfpplus6,sfp-sfpplus7,sfp-sfpplus8,sfp-sfpplus9,sfp-sfpplus10,sfp-sfpplus11,sfp-sfpplus12,sfp-sfpplus13,sfp-sfpplus14,sfp-sfpplus15,sfp-sfpplus16,sfp-sfpplus17,sfp-sfpplus18,sfp-sfpplus19,sfp-sfpplus20,sfp-sfpplus21,sfp-sfpplus22,sfp-sfpplus23,sfp-sfpplus24,qsfpplus1-1,qsfpplus1-2,qsfpplus1-3,qsfpplus1-4,qsfpplus2-1,qsfpplus2-2,qsfpplus2-3,qsfpplus2-4"
-    commentvar: Test-Clair-Artnet
+    untaggedinterface: ""
+    taggedinterfaceidftrunk: "bridge,sfp-sfpplus1,sfp-sfpplus2,sfp-sfpplus3,sfp-sfpplus4,ether2,ether3,ether4,ether5,ether6,ether7,ether8"
+
+
+    commentvar: WLAN_Produktion
 
   gather_facts: false
   environment:
@@ -23,45 +28,26 @@
 
   tasks:
 
-#VLAN entfernen, falls es bereits angelegt wurde, um es entsprechend neu anzulegen
-#  - name: VLAN entfernen vorm anlegen {{ vlanid }}
-#    community.routeros.command:
-#      commands: /interface/vlan/remove [find vlan-ids={{ vlanid }}]
 
 #VLAN im Bereich Interface anlegen.
-  - name: VLAN Add Interface {{ vlanid }}
+  - name: VLAN Add Interface {{ vlanid }}  {{ vlanname }}
+    hosts: all
     community.routeros.command:
       commands:
         - "/interface/vlan/add vlan-id={{ vlanid }} interface={{ bridgeid }} name={{ vlanname }} comment={{ commentvar }}"
 
-#VLAN Interface einstellungen setzen
-#  - name: VLAN Set Interface {{ vlanid }}
-#    community.routeros.command:
-#      commands:
-#        - "/interface/vlan/set [find vlan-id={{ vlanid }}] interface={{ bridgeid }} name={{ vlanname }} "
-
-#VLAN im Bereich Bridge entfernen, um es entsprechend neu anzulegen
-#  - name: VLAN Bridge entfernen vorm anlegen {{ vlanid }}
-#    community.routeros.command:
-#      commands:
-#        - "/interface/bridge/vlan/remove [find vlan-ids={{ vlanid }}]"
-
-##VLAN im Bereich Bridge hinzufügen und Ports tagged/untagged eintragen
-  - name: VLAN Add Bridge {{ vlanid }}
+#Core VLAN im Bereich Bridge hinzufügen und Ports tagged/untagged eintragen
+  - name: Core VLAN Add Bridge {{ vlanid }}  {{ vlanname }}
+    hosts: SwitcheCore
     community.routeros.command:
       commands:
         - "/interface/bridge/vlan/add vlan-ids={{ vlanid }} bridge={{ bridgeid }} tagged={{ taggedinterfacecoretrunk }} untagged={{ untaggedinterfacetrunk }} comment={{ commentvar }}"
 
-
-#VLAN Kommentieren
-#  - name: VLAN comment Bridge {{ vlanid }}
-#    community.routeros.command:
-#      commands:
-#        - "/interface/bridge/vlan/set [find vlan-ids={{ vlanid }}] comment={{ commentvar }}"
-#
-#  - name: VLAN comment Bridge {{ vlanid }}
-#    community.routeros.command:
-#      commands:
-#        - "/interface/vlan/set [find vlan-id={{ vlanid }}] comment={{ commentvar }}"
+#IDF VLAN im Bereich Bridge hinzufügen und Ports tagged/untagged eintragen
+  - name: IDF VLAN Add Bridge {{ vlanid }}  {{ vlanname }}
+    hosts: SwitcheIDF
+    community.routeros.command:
+      commands:
+        - "/interface/bridge/vlan/add vlan-ids={{ vlanid }} bridge={{ bridgeid }} tagged={{ taggedinterfaceidftrunk }} untagged={{ untaggedinterface }} comment={{ commentvar }}"
 
 ...

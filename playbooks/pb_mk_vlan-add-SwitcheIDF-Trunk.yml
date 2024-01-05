@@ -10,12 +10,12 @@
   - ANSIBLE_REMOTE_TMP: /tmp
 
 #Variablen für die VLANs
-    vlanid: "1000"
-    vlanname: "Test"
-    bridgeid: "bridge"
+    vlanid: 100
+    vlanname: Produktion
+    bridgeid: bridge
+    commentvar: WLAN_Produktion
     untaggedinterface: "ether9"
     taggedinterfaceidftrunk: "bridge,sfp-sfpplus1,sfp-sfpplus2,sfp-sfpplus3,sfp-sfpplus4"
-    commentvar: "VLAN {{ vlanid }}: Nutzung für USV"
 
 
   gather_facts: false
@@ -30,12 +30,12 @@
 #      commands: /interface/bridge/vlan/remove [find vlan-ids={{ vlanid }}]
 
 #VLAN im Bereich Interface anlegen.
-  - name: VLAN Add Interface {{ vlanid }}
+  - name: VLAN Add Interface {{ vlanid }}  {{ vlanname }}
     community.routeros.command:
       commands: /interface/vlan/add vlan-id={{ vlanid }} interface={{ bridgeid }} name={{ vlanname }}  comment={{commentvar}}
 
 #VLAN Interface einstellungen setzen
-  - name: VLAN Set Interface {{ vlanid }}
+  - name: VLAN Set Interface {{ vlanid }}  {{ vlanname }}
     community.routeros.command:
       commands: /interface/vlan/set [find vlan-id={{ vlanid }}] interface={{ bridgeid }} name={{ vlanname }}  comment={{commentvar}}
 
