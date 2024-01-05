@@ -29,16 +29,16 @@
 #      commands: /interface/vlan/remove [find vlan-ids={{ vlanid }}]
 
 #VLAN im Bereich Interface anlegen.
-  - name: VLAN Add Interface {{ vlanid }}
-    community.routeros.command:
-      commands:
-        - "/interface/vlan/add vlan-id={{ vlanid }} interface={{ bridgeid }} name={{ vlanname }}"
+#  - name: VLAN Add Interface {{ vlanid }}
+#    community.routeros.command:
+#      commands:
+#        - "/interface/vlan/add vlan-id={{ vlanid }} interface={{ bridgeid }} name={{ vlanname }}"
 
 #VLAN Interface einstellungen setzen
-  - name: VLAN Set Interface {{ vlanid }}
-    community.routeros.command:
-      commands:
-        - "/interface/vlan/set [find vlan-id={{ vlanid }}] interface={{ bridgeid }} name={{ vlanname }} "
+#  - name: VLAN Set Interface {{ vlanid }}
+#    community.routeros.command:
+#      commands:
+#        - "/interface/vlan/set [find vlan-id={{ vlanid }}] interface={{ bridgeid }} name={{ vlanname }} "
 
 #VLAN im Bereich Bridge entfernen, um es entsprechend neu anzulegen
 #  - name: VLAN Bridge entfernen vorm anlegen {{ vlanid }}
@@ -47,10 +47,21 @@
 #        - "/interface/bridge/vlan/remove [find vlan-ids={{ vlanid }}]"
 
 ##VLAN im Bereich Bridge hinzufügen und Ports tagged/untagged eintragen
+#  - name: VLAN Add Bridge {{ vlanid }}
+#    community.routeros.command:
+#      commands:
+#        - "/interface/bridge/vlan/add vlan-ids={{ vlanid }} bridge={{ bridgeid }} tagged={{ taggedinterfacecoretrunk }} untagged={{ untaggedinterfacetrunk }}"
+
+
+#VLAN Kommentieren
   - name: VLAN Add Bridge {{ vlanid }}
     community.routeros.command:
       commands:
-        - "/interface/bridge/vlan/add vlan-ids={{ vlanid }} bridge={{ bridgeid }} tagged={{ taggedinterfacecoretrunk }} untagged={{ untaggedinterfacetrunk }}"
+        - "/interface/bridge/vlan/set [find vlan-ids={{ vlanid }}] comment={{ commentvar }}"
 
+  - name: VLAN Add Bridge {{ vlanid }}
+    community.routeros.command:
+      commands:
+        - "/interface/vlan/set [find vlan-id={{ vlanid }}] comment={{ commentvar }}"
 
 ...
