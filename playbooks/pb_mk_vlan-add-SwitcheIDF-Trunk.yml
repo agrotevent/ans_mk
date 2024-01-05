@@ -40,13 +40,13 @@
 #VLAN im Bereich Bridge hinzufügen und Ports tagged/untagged eintragen
 
 #Core VLAN im Bereich Bridge hinzufügen und Ports tagged/untagged eintragen
-  - name: IDF TRUNK VLAN Add Bridge {{ vlanid }}  {{ vlanname }}
+  - name: IDF TRUNK VLAN Add Bridge {{ vlanid }}
     community.routeros.command:
       commands:
         - "/interface/bridge/vlan/add vlan-ids={{ vlanid }} bridge={{ bridgeid }} tagged={{ taggedinterfaceidftrunk }} untagged={{ untaggedinterfaceidftrunk }}"
 
 #Core VLAN comment Bridge
-  - name: IDF TRUNK VLAN Add Bridge {{ vlanid }}  {{ vlanname }}
+  - name: IDF TRUNK VLAN Add Bridge {{ vlanid }}
     community.routeros.command:
       commands:
         - "/interface/bridge/vlan/set [find vlan-ids={{ vlanid }}] comment={{ commentvar }}"
