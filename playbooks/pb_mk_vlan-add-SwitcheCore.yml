@@ -3,7 +3,8 @@
   #Zusätzlich Kommentare möglich
 
 - name: "Add VLAN Bridge/Interface"
-  hosts: all
+  hosts: SwitcheCore
+
   vars_files: mk_vlan.yml
 
   gather_facts: false
