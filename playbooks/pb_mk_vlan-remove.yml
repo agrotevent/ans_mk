@@ -3,14 +3,14 @@
   #Zusätzlich Kommentare möglich
 
 - name: "remove VLAN Bridge/Interface"
-  hosts: MikrotikKNOT
+  hosts: all
   vars:
   - ansible_connection: ansible.netcommon.network_cli
   - ansible_network_os: community.network.routeros
   - ANSIBLE_REMOTE_TMP: /tmp
 
 #Variablen für die VLANs
-    vlanid: 2030
+    vlanid: 50
     vlanname: testvlan30
     bridgeid: bridge1
     taggedinterface: ether2
