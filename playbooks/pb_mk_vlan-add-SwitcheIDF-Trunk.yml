@@ -23,12 +23,12 @@
 #      commands: /interface/bridge/vlan/remove [find vlan-ids={{ vlanid }}]
 
 #VLAN im Bereich Interface anlegen.
-  - name: VLAN Add Interface {{ vlanid }}  {{ vlanname }}
+  - name: IDF TRUNK VLAN Add Interface {{ vlanid }}  {{ vlanname }}
     community.routeros.command:
       commands: /interface/vlan/add vlan-id={{ vlanid }} interface={{ bridgeid }} name={{ vlanname }}  comment={{commentvar}}
 
 #VLAN Interface einstellungen setzen
-  - name: VLAN Set Interface {{ vlanid }}  {{ vlanname }}
+  - name: IDF TRUNK VLAN Set Interface {{ vlanid }}  {{ vlanname }}
     community.routeros.command:
       commands: /interface/vlan/set [find vlan-id={{ vlanid }}] interface={{ bridgeid }} name={{ vlanname }}  comment={{commentvar}}
 
@@ -38,7 +38,12 @@
 #      commands: /interface/bridge/vlan/remove [find vlan-ids={{ vlanid }}]
 
 #VLAN im Bereich Bridge hinzufügen und Ports tagged/untagged eintragen
-  - name: VLAN Add Bridge {{ vlanid }}
+  - name: IDF TRUNK VLAN Add Bridge {{ vlanid }}
     community.routeros.command:
       commands:
-        - "/interface/bridge/vlan/add vlan-ids={{ vlanid }} bridge={{ bridgeid }} tagged={{ taggedinterfaceidftrunk }} untagged={{ taggedinterfaceidftrunk }} comment={{commentvar}}"
+        - "/interface/bridge/vlan/add vlan-ids={{ vlanid }} bridge={{ bridgeid }} tagged={{ taggedinterfaceidftrunk }} untagged={{ taggedinterfaceidftrunk }}"
+
+  - name: IDF TRUNK VLAN Add Bridge {{ vlanid }}  {{ vlanname }}
+    community.routeros.command:
+      commands:
+        - "/interface/bridge/vlan/set [find vlan-ids={{ vlanid }}] comment={{ commentvar }}"

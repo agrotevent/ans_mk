@@ -40,12 +40,12 @@
 #tagged={{ taggedinterfaceidfaccess }}
 
 #VLAN im Bereich Bridge hinzufügen und Ports tagged/untagged eintragen
-  - name: VLAN Set Bridge {{ vlanid }} {{ vlanname }}
+  - name: IDF ACCESS VLAN Set Bridge {{ vlanid }} {{ vlanname }}
     community.routeros.command:
       commands:
         - "/interface/bridge/vlan/set [find vlan-ids={{ vlanid }}]  bridge={{ bridgeid }}  untagged={{ untaggedinterfaceidfaccess }}"
 
-  - name: VLAN Set Comment
+  - name: IDF ACCESS VLAN Set Comment
     community.routeros.command:
       commands:
         - "/interface/bridge/port/set [find interface={{ vlanid }}]  comment={{commentvar}}"

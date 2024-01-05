@@ -18,19 +18,19 @@
 
 
 #VLAN im Bereich Interface anlegen.
-  - name: VLAN Add Interface {{ vlanid }}  {{ vlanname }}
+  - name: CORE VLAN Add Interface {{ vlanid }}  {{ vlanname }}
     community.routeros.command:
       commands:
         - "/interface/vlan/add vlan-id={{ vlanid }} interface={{ bridgeid }} name={{ vlanname }} comment={{ commentvar }}"
 
 #Core VLAN im Bereich Bridge hinzufügen und Ports tagged/untagged eintragen
-  - name: Core VLAN Add Bridge {{ vlanid }}  {{ vlanname }}
+  - name: CORE VLAN Add Bridge {{ vlanid }}  {{ vlanname }}
     community.routeros.command:
       commands:
         - "/interface/bridge/vlan/add vlan-ids={{ vlanid }} bridge={{ bridgeid }} tagged={{ taggedinterfacecoretrunk }} untagged={{ untaggedinterfacecoretrunk }}"
 
 #Core VLAN comment Bridge
-  - name: Core VLAN Add Bridge {{ vlanid }}  {{ vlanname }}
+  - name: CORE VLAN Add Bridge {{ vlanid }}  {{ vlanname }}
     community.routeros.command:
       commands:
         - "/interface/bridge/vlan/set [find vlan-ids={{ vlanid }}] comment={{ commentvar }}"
