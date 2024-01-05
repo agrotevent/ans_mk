@@ -4,7 +4,7 @@
 
 - name: "Add VLAN Bridge/Interface"
   hosts: all
-  vars_files: ./vars/mk_vlan.yml
+  vars_files: mk_vlan.yml
 
   gather_facts: false
   environment:
