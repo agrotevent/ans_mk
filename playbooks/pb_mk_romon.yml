@@ -17,6 +17,3 @@
   - name: Set RoMon enabled
     community.routeros.command:
       commands: /tool/romon/set enabled=yes
-
-
-...

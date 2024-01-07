@@ -2,7 +2,7 @@
   #VLAN für Bridge/Interface anlegen und interfaces "tagged"/"untagged" hinzufügen.
   #Zusätzlich Kommentare möglich
 
-- name: "Default Setup"
+- name: Default Setup
   hosts: all
   vars:
   - ansible_connection: ansible.netcommon.network_cli

@@ -25,5 +25,3 @@
   - name: Set Port Description leeren
     community.routeros.command:
       commands: /snmp/set enabled=yes location={{snmplocation}} trap-community={{snmpcommunity}}
-
-...
