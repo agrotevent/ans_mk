@@ -14,24 +14,24 @@
     - debug:
         msg: Add VLAN
 
-- name: enable RoMon
-  import_playbook: pb_mk_romon.yml
+    - name: enable RoMon
+      import_playbook: pb_mk_romon.yml
 
-- name: Enable/Set SNMP
-  import_playbook: pb_mk_snmp.yml
+    - name: Enable/Set SNMP
+      import_playbook: pb_mk_snmp.yml
 
-- name: Set/Enable NTP Server
-  import_playbook: pb_mk_ntp-server.yml
+    - name: Set/Enable NTP Server
+      import_playbook: pb_mk_ntp-server.yml
 
-- name: Set Timezone Europe/Berlin
-  import_playbook: pb_mk_timezone.yml
+    - name: Set Timezone Europe/Berlin
+      import_playbook: pb_mk_timezone.yml
 
 #- name: Set Service Disable
 #  import_playbook: pb_mk_service-disable.yml
 
 
-- name: Set Routerboard-Upgrade
-  import_playbook: pb_mk_rb-upgrade.yml
+    - name: Set Routerboard-Upgrade
+      import_playbook: pb_mk_rb-upgrade.yml
 
 
 
@@ -40,19 +40,19 @@
 #    commands: /ip service set ssh port={{ routeros_ssh_port }}
 
 
-- name: "disable bandwidth test server"
-  routeros_command:
-    commands: /tool bandwidth-server set enabled=no
+    - name: "disable bandwidth test server"
+      routeros_command:
+        commands: /tool bandwidth-server set enabled=no
 
-- name: "disable dns cache"
-  routeros_command:
-    commands: /ip dns set allow-remote-requests=no
+    - name: "disable dns cache"
+      routeros_command:
+        commands: /ip dns set allow-remote-requests=no
 
 
-- name: "no login with password"
-  routeros_command:
-    commands: /ip ssh set always-allow-password-login=no
-  when: routeros_disable_password_login
+    - name: "no login with password"
+      routeros_command:
+        commands: /ip ssh set always-allow-password-login=no
+      when: routeros_disable_password_login
 
 #- name: "bind ip for winbox"
 #  routeros_command:
