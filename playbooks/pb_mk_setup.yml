@@ -5,7 +5,7 @@
   - ansible_connection: ansible.netcommon.network_cli
   - ansible_network_os: community.network.routeros
   - ANSIBLE_REMOTE_TMP: /tmp
-  routeros_timezone: "Europe/Berlin"
+    routeros_timezone: "Europe/Berlin"
 
   gather_facts: false
   environment:
