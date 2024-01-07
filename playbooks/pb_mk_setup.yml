@@ -5,7 +5,6 @@
   - ansible_connection: ansible.netcommon.network_cli
   - ansible_network_os: community.network.routeros
   - ANSIBLE_REMOTE_TMP: /tmp
-    routeros_timezone: "Europe/Berlin"
 
   gather_facts: false
   environment:
@@ -24,24 +23,16 @@
 - name: Set/Enable NTP Server
   import_playbook: pb_mk_ntp-server.yml
 
+- name: Set Timezone Europe/Berlin
+  import_playbook: pb_mk_timezone.yml
+
+- name: Set Service Disable
+  import_playbook: pb_mk_service-disable.yml
+
+
 - name: Set Routerboard-Upgrade
   import_playbook: pb_mk_rb-upgrade.yml
 
-
-- name: setup timezone
-      community.routeros.command:
-        commands:
-          - "/system clock set time-zone-autodetect=no time-zone-name={{ routeros_timezone }}"
-
-- name: "disable sensitive service [ telnet, ftp, www, api, api-ssl ]"
-  routeros_command:
-    commands: /ip service disable {{ item }}
-  with_items:
-   - telnet
-   - ftp
-   - www
-   - api
-   - api-ssl
 
 
 #- name: "change default ssh port"

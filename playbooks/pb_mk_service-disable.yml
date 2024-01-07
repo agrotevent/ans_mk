@@ -1,0 +1,31 @@
+---
+- name: "RoMon"
+  hosts: all
+  vars:
+  - ansible_connection: ansible.netcommon.network_cli
+  - ansible_network_os: community.network.routeros
+  - ANSIBLE_REMOTE_TMP: /tmp
+
+  gather_facts: false
+  environment:
+    remote_tmp:  /tmp/.ansible/tmp
+
+
+
+  tasks:
+
+  - name: Set RoMon enabled
+    community.routeros.command:
+      commands: /tool/romon/set enabled=yes
+
+
+
+  - name: "disable sensitive service [ telnet, ftp, www, api, api-ssl ]"
+    community.routeros_command:
+      commands: /ip service disable {{ item }}
+    with_items:
+        - telnet
+        - ftp
+        - www
+        - api
+        - api-ssl
