@@ -21,7 +21,7 @@
 #  - name: Upgade to latest stable
 #    community.routeros.command:
 #      commands: /system package update install
-    - name: set routeros firmware channel
+    - name: "set routeros firmware channel"
       community.routeros_command:
         commands:
           - /system package update set channel={{ channeltype }}
