@@ -9,12 +9,12 @@
   - ANSIBLE_REMOTE_TMP: /tmp
 
 #Variablen für die VLANs
-    vlanid: 2014
-    vlanname: testvlan20
-    bridgeid: bridge1
-    taggedinterface: ether2
+    vlanid: 1337
+    vlanname: Mikrotik Management
+    bridgeid: bridge
+    taggedinterface: ether23,ether24
     untaggedinterface: ether1,bridge1
-    commentvar: Ansible20
+    commentvar: Management
 
 
   gather_facts: false
