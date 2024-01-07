@@ -10,6 +10,8 @@
   - ansible_connection: ansible.netcommon.network_cli
   - ansible_network_os: community.network.routeros
   - ANSIBLE_REMOTE_TMP: /tmp
+    channeltype: stable
+
   gather_facts: false
   environment:
     remote_tmp:  /tmp/.ansible/tmp
@@ -19,6 +21,10 @@
 #  - name: Upgade to latest stable
 #    community.routeros.command:
 #      commands: /system package update install
+    - name: set routeros firmware channel
+      community.routeros_command:
+        commands:
+          - /system package update set channel={{ channeltype }}
 
     - name: aktuelle Version
       community.routeros.command:

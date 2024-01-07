@@ -1,0 +1,73 @@
+---
+  #VLAN für Bridge/Interface anlegen und interfaces "tagged"/"untagged" hinzufügen.
+  #Zusätzlich Kommentare möglich
+
+- name: "Add VLAN Bridge/Interface"
+  hosts: all
+  vars:
+  - ansible_connection: ansible.netcommon.network_cli
+  - ansible_network_os: community.network.routeros
+  - ANSIBLE_REMOTE_TMP: /tmp
+  routeros_timezone: "Europe/Berlin"
+
+  gather_facts: false
+  environment:
+    remote_tmp:  /tmp/.ansible/tmp
+
+  tasks:
+    - debug:
+        msg: Add VLAN
+
+- name: enable RoMon
+  import_playbook: pb_mk_romon.yml
+
+- name: Enable/Set SNMP
+  import_playbook: pb_mk_snmp.yml
+
+- name: Set/Enable NTP Server
+  import_playbook: pb_mk_ntp-server.yml
+
+- name: Set Routerboard-Upgrade
+  import_playbook: pb_mk_rb-upgrade.yml
+
+
+- name: setup timezone
+  routeros_command:
+    commands: /system clock set time-zone-autodetect=no time-zone-name={{ routeros_timezone }}
+
+- name: "disable sensitive service [ telnet, ftp, www, api, api-ssl ]"
+  routeros_command:
+    commands: /ip service disable {{ item }}
+  with_items:
+   - telnet
+   - ftp
+   - www
+   - api
+   - api-ssl
+
+
+#- name: "change default ssh port"
+#  routeros_command:
+#    commands: /ip service set ssh port={{ routeros_ssh_port }}
+
+
+- name: "disable bandwidth test server"
+  routeros_command:
+    commands: /tool bandwidth-server set enabled=no
+
+- name: "disable dns cache"
+  routeros_command:
+    commands: /ip dns set allow-remote-requests=no
+
+
+- name: "no login with password"
+  routeros_command:
+    commands: /ip ssh set always-allow-password-login=no
+  when: routeros_disable_password_login
+
+#- name: "bind ip for winbox"
+#  routeros_command:
+#    commands: /ip service set winbox address={{ routeros_secure_address }}
+#  when: not routeros_disable_password_login
+
+# /ip firewall filter add action=accept chain=input comment="allow admin access to router from authorized clients" dst-port={{ routeros_ssh_port }},8888,8291 in-interface-list=!WAN protocol=tcp

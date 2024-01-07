@@ -16,7 +16,7 @@
   #  commentvar: WLAN_Produktion
   #  untaggedinterface: "ether1"
   #  taggedinterfaceidfaccess: "bridge,sfp-sfpplus1,sfp-sfpplus2,sfp-sfpplus3,sfp-sfpplus4"
-  vars_files: vars/mk_vlan.yml
+  vars_files: mk_vlan.yml
 
   gather_facts: false
   environment:
