@@ -7,7 +7,7 @@
   - ANSIBLE_REMOTE_TMP: /tmp
 
 #Variablen für die SNMP Einstellungen Community/Location
-    ntp-server: ptbtime1.ptb.de
+    ntp-server: "ptbtime1.ptb.de"
 
   gather_facts: false
   environment:
