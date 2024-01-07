@@ -29,8 +29,9 @@
 
 
 - name: setup timezone
-  routeros_command:
-    commands: /system clock set time-zone-autodetect=no time-zone-name={{ routeros_timezone }}
+      community.routeros.command:
+        commands:
+          - "/system clock set time-zone-autodetect=no time-zone-name={{ routeros_timezone }}"
 
 - name: "disable sensitive service [ telnet, ftp, www, api, api-ssl ]"
   routeros_command:
