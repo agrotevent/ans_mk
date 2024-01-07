@@ -15,7 +15,7 @@
   tasks:
 
 
-  - name: "disable sensitive service [ telnet, ftp, www, api, api-ssl ]"
+  - name: "disable sensitive service"
     community.routeros_command:
       commands: /ip service disable {{ item }}
     with_items:
