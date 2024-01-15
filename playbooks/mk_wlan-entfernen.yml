@@ -1,0 +1,18 @@
+---
+    vars:
+#Variablen für die VLANs
+    - ssidconfig: 
+      value1: GBDF-Backstage2023
+      value2: GBDF-Checkin
+      value3: GBDF-Presse
+      value4: GBDF-RedCarpet
+      value5: RBF2023Ticketing
+      value6: StageTheaterNeueFlora
+      value7: "RBF2023 Produktion"
+      value8: "RBF2023 Stages"
+
+
+
+
+#WLAN SSID Entfernen
+/interface/wifi/remove [find configuration={{ ssidconfig }}]

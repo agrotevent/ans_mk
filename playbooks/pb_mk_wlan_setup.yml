@@ -1,0 +1,38 @@
+---
+  #VLAN für Bridge/Interface anlegen und interfaces "tagged"/"untagged" hinzufügen.
+  #Zusätzlich Kommentare möglich
+
+- name: "Add VLAN Bridge/Interface"
+  hosts: SwitcheCore
+  vars:
+  - ansible_connection: ansible.netcommon.network_cli
+  - ansible_network_os: community.network.routeros
+  - ANSIBLE_REMOTE_TMP: /tmp
+
+  vars_files: mk_vlan.yml
+  gather_facts: false
+  environment:
+    remote_tmp:  /tmp/.ansible/tmp
+
+  tasks:
+
+
+#VLAN im Bereich Interface anlegen.
+  - name: CORE VLAN Add Interface {{ vlanid }}  {{ vlanname }}
+    community.routeros.command:
+      commands:
+        - "/interface/vlan/add vlan-id={{ vlanid }} interface={{ bridgeid }} name={{ vlanname }} comment={{ commentvar }}"
+
+#Core VLAN im Bereich Bridge hinzufügen und Ports tagged/untagged eintragen
+  - name: CORE VLAN Add Bridge {{ vlanid }}  {{ vlanname }}
+    community.routeros.command:
+      commands:
+        - "/interface/bridge/vlan/add vlan-ids={{ vlanid }} bridge={{ bridgeid }} tagged={{ taggedinterfacecoretrunk }} untagged={{ untaggedinterfacecoretrunk }}"
+
+#Core VLAN comment Bridge
+  - name: CORE VLAN Add Bridge {{ vlanid }}  {{ vlanname }}
+    community.routeros.command:
+      commands:
+        - "/interface/bridge/vlan/set [find vlan-ids={{ vlanid }}] comment={{ commentvar }}"
+
+...
